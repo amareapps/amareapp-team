@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:Chatter.Classes" xmlns:local1="clr-namespace:ChatUIXForms.Helpers"
+             mc:Ignorable="d"
+             x:Class="Chatter.Messaging" Title="Message" IconImageSource="message.png" BackgroundColor="White">
+    <Page.Resources>
+        <local:Base64toImageConverter x:Key="base64toImageSource"></local:Base64toImageConverter>
+        <local1:ChatTemplateSelector x:Key="MessageTemplateSelector"/>
+
+    </Page.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="0,0,0,10">
+            <Grid RowSpacing="0" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
+                <Button BackgroundColor="Transparent" ImageSource="backButton.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" x:Name="backButton" Clicked="backButton_Clicked"/>
+                <Image x:Name="userImage" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="0"></Image>
+                <Label x:Name="lblReceiver" VerticalOptions="Center" FontSize="Medium" BackgroundColor="Transparent" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3"/>
+            </Grid>
+            <ListView Grid.Row="1" Grid.ColumnSpan="5"  x:Name="ChatList"
+                 ItemTemplate="{StaticResource MessageTemplateSelector}"  
+                 Margin="0" 
+                 HasUnevenRows="True" 
+                 VerticalOptions="FillAndExpand" 
+                 SeparatorColor="Transparent" >
+            </ListView>
+            <Frame BorderColor="DarkRed" IsClippedToBounds="True" CornerRadius="10" HasShadow="True" Margin="0" Padding="0">
+                <Grid Margin="10,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Source="camera.png" BackgroundColor="Blue" CornerRadius="20" Padding="5" Margin="3" Aspect="AspectFill" HeightRequest="40" WidthRequest="40" x:Name="sendimageButton"  Clicked="sendimageButton_Clicked" Grid.Column="0"></ImageButton>
+                    <Entry x:Name="messageEntry"  Placeholder="Enter Message" Grid.Column="1"></Entry>
+                    <ImageButton Source="send.png" Aspect="Fill" HeightRequest="40" WidthRequest="40" x:Name="sendButton"  Clicked="sendButton_Clicked" Grid.Column="2"></ImageButton>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

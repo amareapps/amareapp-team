@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Chatter.View.Cells.OutgoingViewCell">
+    <StackLayout>
+    <Frame BackgroundColor="Transparent" CornerRadius="20"
+            Padding="0"
+            Rotation="0"
+            FlowDirection="LeftToRight"
+            HasShadow="True"
+            Margin="80,10,10,10">
+            <Label BackgroundColor="DodgerBlue" Text="{Binding message}"
+                  TextColor="Black" Padding="10" />
+    </Frame>
+        <Label Text="{Binding datetime}" FontSize="Small" HorizontalOptions="End"></Label>
+    </StackLayout>
+</ViewCell>

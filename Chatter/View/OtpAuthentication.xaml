@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Chatter.View.OtpAuthentication" BackgroundColor="WhiteSmoke">
+    <ContentPage.Content>
+        <StackLayout Spacing="50" Margin="20">
+            <Label Text="VERIFY" HorizontalOptions="Center" FontSize="40"/>
+            <Label Text="Enter the code received on the registered number" HorizontalOptions="Center"/>
+            <Entry x:Name="codeEntry" HorizontalTextAlignment="Center" TextChanged="codeEntry_TextChanged"/>
+            <Button BackgroundColor="Gray" 
+                    BorderColor="#707070" 
+                    BorderWidth="1" 
+                    IsEnabled="False" 
+                    CornerRadius="30" 
+                    x:Name="confirmButton" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    FontSize="Large" 
+                    Clicked="confirmButton_Clicked" 
+                    HeightRequest="50"
+                    WidthRequest="300" 
+                    Text="CONFIRM"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

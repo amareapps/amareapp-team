@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Chatter.View.NumberLogin" Title="Register">
+    <ContentPage.Content>
+        <StackLayout Spacing="40" Margin="20">
+            <Label FontSize="40" Text="My number is" FontAttributes="Bold"></Label>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"></RowDefinition>
+                    <RowDefinition Height="AUTO"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="AUTO"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Picker 
+                    x:Name="countryCodePicker"
+                    Grid.Row="0" Grid.Column="0"
+                    Title="Country Code" SelectedIndexChanged="countryCodePicker_SelectedIndexChanged"/>
+                <Image Source="profile.png" HeightRequest="10" WidthRequest="10" Grid.Row="0" Grid.Column="1"></Image>
+                <Label x:Name="dialCodeLabel" Grid.Row="0" Grid.Column="2"></Label>
+                <Entry MaxLength="11" x:Name="phoneEntry" TextChanged="phoneEntry_TextChanged" Grid.Row="1" Grid.ColumnSpan="3" Keyboard="Numeric" Placeholder="Phone Number"></Entry>
+            </Grid>
+            <Label 
+                Text="When you tap 'Continue' Amare will send a text with verification code.Message amd data rates may apply. The veritied phone number can be used to login">
+            </Label>
+            <Button BackgroundColor="Gray" 
+                    BorderColor="#707070" 
+                    BorderWidth="1" 
+                    IsEnabled="False" 
+                    CornerRadius="30" 
+                    x:Name="continueButton" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    FontSize="Large" 
+                    Clicked="continueButton_Clicked" 
+                    HeightRequest="50"
+                    WidthRequest="300" 
+                    Text="CONTINUE"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

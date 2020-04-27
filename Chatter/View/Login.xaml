@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Chatter.Classes"
+             mc:Ignorable="d"
+             x:Class="Chatter.Login" BackgroundColor="WhiteSmoke" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid VerticalOptions="StartAndExpand" Margin="20" RowSpacing="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="450"></RowDefinition>
+                <RowDefinition Height="AUTO"></RowDefinition>
+                <RowDefinition Height="AUTO"></RowDefinition>
+                <RowDefinition Height="AUTO"></RowDefinition>
+                <RowDefinition Height="AUTO"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" VerticalOptions="Center">
+                <Image Source="FINAL_AMERA.png" Aspect="Fill" HeightRequest="90" VerticalOptions="Center" WidthRequest="350"/>
+            </StackLayout>
+            <Frame IsClippedToBounds="True" HeightRequest="50" WidthRequest="300" CornerRadius="30" Grid.Row="1" Margin="0" Padding="0">
+                <local:GradientColorStack  StartColor="#fb0202" EndColor="#ff00ca" GradientColorOrientation="Horizontal" Padding="20,0,40,0" ImageSource="register.png" BorderColor="#707070" BorderWidth="1" CornerRadius="30" x:Name="phoneRegister"  BackgroundColor="Transparent" TextColor="White" Clicked="phoneRegister_Clicked"  HeightRequest="50" WidthRequest="300" Text="LOGIN WITH PHONE NUMBER" Grid.Row="1"></local:GradientColorStack>
+            </Frame>
+            <Button Padding="20,0,40,0" ImageSource="email.png" BorderColor="#707070" BorderWidth="1" CornerRadius="30" x:Name="LoginButton" BackgroundColor="WhiteSmoke" TextColor="Black" Clicked="LoginButton_Clicked"  HeightRequest="50" WidthRequest="300" Text="LOGIN with AMARE" Grid.Row="2"></Button>
+            <Button Padding="20,0,40,0" ImageSource="register.png" BorderColor="#707070" BorderWidth="1" CornerRadius="30" x:Name="registerButton"  BackgroundColor="WhiteSmoke" TextColor="Black" Clicked="registerButton_Clicked" HeightRequest="50" WidthRequest="300" Text="REGISTER IN AMARE" Grid.Row="3"></Button>
+            <Frame CornerRadius="30"  Grid.Row="4" 
+                                       HeightRequest="50"
+                                       WidthRequest="300"
+                                       Padding="0"
+                                       BorderColor="Red"
+                                       IsClippedToBounds="True">
+                <ImageButton x:Name="fbLoginButton" Clicked="fbLoginButton_Clicked" BorderColor="#707070" BorderWidth="1" CornerRadius="30" HeightRequest="50" WidthRequest="300" Aspect="AspectFill" Source="fb_login.png"></ImageButton>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

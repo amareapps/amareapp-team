@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Chatter.Classes"
+          x:Class="Chatter.View.Cells.IncomingViewCell">
+    <Frame BackgroundColor="Transparent"
+              Rotation="0"
+              FlowDirection="LeftToRight"
+              Padding="10"
+              HasShadow="true"
+                CornerRadius="20"
+              Margin="10,10,80,10">
+        <StackLayout>
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <local:Base64toImageConverter x:Key="base64toImageSource"></local:Base64toImageConverter>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True" CornerRadius="40" Padding="0" Margin="0">
+                    <ImageButton x:Name="userImage" Source="{Binding image,Converter={StaticResource base64toImageSource}}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50"></ImageButton>
+                </Frame>
+                <Label BackgroundColor="#d9d9d9" Grid.Column="1" Text="{Binding message}"/>
+            </Grid>
+            <Label Text="{Binding datetime}" FontSize="Small" HorizontalOptions="Start"></Label>
+        </StackLayout>
+    </Frame>
+</ViewCell>

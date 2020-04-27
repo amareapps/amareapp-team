@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Chatter.Login_Input">
+    <AbsoluteLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <StackLayout AbsoluteLayout.LayoutFlags="All"
+              AbsoluteLayout.LayoutBounds="0,1,1,1" Margin="20,0,20,0" Padding="30,50,30,50" Spacing="24" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label HorizontalOptions="Center" Text="Enter User Credentials" FontSize="15"></Label>
+            <StackLayout>
+                <Entry WidthRequest="450" x:Name="emailEntry" Placeholder="Enter your e-mail" FontSize="Large"></Entry>
+                <Entry WidthRequest="450" x:Name="passEntry" Placeholder="Enter your password" FontSize="Large" IsPassword="True"></Entry>
+            </StackLayout>
+            <Button CornerRadius="30" x:Name="loginButton" Clicked="loginButton_Clicked" Text="Login" BackgroundColor="DarkRed" TextColor="White"></Button>
+        </StackLayout>
+        <ActivityIndicator x:Name="activityIndicator" IsRunning="False" Color="Red" VerticalOptions="Center"
+                               HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />
+    </AbsoluteLayout>
+</pages:PopupPage>
