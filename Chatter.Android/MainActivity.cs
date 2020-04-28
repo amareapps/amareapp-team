@@ -13,6 +13,7 @@ using System.Data;
 using Xamd.ImageCarousel.Forms.Plugin.Droid;
 using Firebase.Database;
 using Xamarin.Forms;
+using PanCardView.Droid;
 
 namespace Chatter.Droid
 {
@@ -36,6 +37,7 @@ namespace Chatter.Droid
             RequestPermissions(permissionGroup, 0);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CardsViewRenderer.Preserve();
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)

@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "beEoV9/cvlw/tQTeDdmoM95mncoe85WTj6nU5v0KRmwvhsxG3qLuPuxi46b+oudjQ/+OxKLySTbmtKzRWH9vHg==",
+  "dgSpecHash": "BMzU791Vn/Rkw+Qd1zcNOoL2eVsBkhLF8LcpJEfz9P1qfgP55oBhcnML2sDeRn+fc2KWh4ekx/YcL4+w9Popmw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.iOS\\Chatter.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kent\\.nuget\\packages\\ansuria.xfgloss\\1.1.3\\ansuria.xfgloss.1.1.3.nupkg.sha512",
     "C:\\Users\\Kent\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
+    "C:\\Users\\Kent\\.nuget\\packages\\cardsview\\2.5.1\\cardsview.2.5.1.nupkg.sha512",
     "C:\\Users\\Kent\\.nuget\\packages\\carouselview.formsplugin\\5.2.0\\carouselview.formsplugin.5.2.0.nupkg.sha512",
     "C:\\Users\\Kent\\.nuget\\packages\\firebasedatabase.net\\4.0.4\\firebasedatabase.net.4.0.4.nupkg.sha512",
     "C:\\Users\\Kent\\.nuget\\packages\\firebasestorage.net\\1.0.3\\firebasestorage.net.1.0.3.nupkg.sha512",

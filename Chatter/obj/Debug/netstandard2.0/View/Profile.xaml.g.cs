@@ -32,7 +32,7 @@ namespace Chatter {
         private global::Xamarin.Forms.ImageButton UpdateProfileButton;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.CarouselView carouselImage;
+        private global::PanCardView.CarouselView autoSlider;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
@@ -42,7 +42,7 @@ namespace Chatter {
             EditButton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ImageButton>(this, "EditButton");
             CameraButton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ImageButton>(this, "CameraButton");
             UpdateProfileButton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ImageButton>(this, "UpdateProfileButton");
-            carouselImage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.CarouselView>(this, "carouselImage");
+            autoSlider = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::PanCardView.CarouselView>(this, "autoSlider");
         }
     }
 }

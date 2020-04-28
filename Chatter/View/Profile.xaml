@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="http://xamarin.com/schemas/2014/forms"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="http://xamarin.com/schemas/2014/forms" 
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
              mc:Ignorable="d"
              x:Class="Chatter.Profile" BackgroundColor="White">
     <ContentPage.Content>
@@ -36,13 +37,26 @@
                 <ImageButton Padding="15" HorizontalOptions="Center" BackgroundColor="Red" CornerRadius="45" HeightRequest="70" WidthRequest="70" x:Name="CameraButton" Source="camera.png" Grid.Column="1" Grid.Row="1"/>
                 <ImageButton Padding="15" HorizontalOptions="Center" BackgroundColor="#545454" CornerRadius="45" HeightRequest="70" WidthRequest="70" x:Name="UpdateProfileButton" Source="edit.png" Grid.Column="2" Grid.Row="0" Clicked="UpdateProfileButton_Clicked"/>
             </Grid>
-            <control:CarouselView Grid.Row="3" x:Name="carouselImage" HeightRequest="630" WidthRequest="100" ItemsSource="{Binding imageSources}">
-                <control:CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        
-                    </DataTemplate>
-                </control:CarouselView.ItemTemplate>
-            </control:CarouselView>
+            <StackLayout Grid.Row="3" BackgroundColor="WhiteSmoke" Margin="0,70,0,0" Padding="0,0,0,10">
+                <cards:CarouselView x:Name="autoSlider">
+                    <cards:CarouselView.ItemsSource>
+                        <x:Array Type="{x:Type View}">
+                            <StackLayout Padding="30,70,30,30">
+                                <Image Source="FINAL_AMERA.png"/>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Swipe around the world" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"></Label>
+                                <Label Text="Passport to anywhere with Amare!" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Black"></Label>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Control Your Profile" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"></Label>
+                                <Label Text="Limit what others see with Amare" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Black"></Label>
+                            </StackLayout>
+                        </x:Array>
+                    </cards:CarouselView.ItemsSource>
+                </cards:CarouselView>
+                <Button HorizontalOptions="Center" FontSize="Medium" CornerRadius="30" Text="Share Amare" TextColor="Red" BackgroundColor="White" ></Button>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -18,6 +18,8 @@ public class MonoPackageManager_Resources {
 		"MySql.Data.CF.dll",
 		"MySql.Data.dll",
 		"Newtonsoft.Json.dll",
+		"PanCardView.dll",
+		"PanCardView.Droid.dll",
 		"Plugin.CurrentActivity.dll",
 		"Plugin.Media.dll",
 		"Plugin.Permissions.dll",

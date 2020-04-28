@@ -30,7 +30,7 @@ C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.pdb
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.csprojAssemblyReference.cache
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\OtpAuthentication.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\bin\Debug\netstandard2.0\eliteKit.dll
-C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.csproj.CoreCompileInputs.cache
-C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Cells\IncomingViewCell.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Cells\OutgoingViewCell.xaml.g.cs
+C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.csproj.CoreCompileInputs.cache
+C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\XamlC.stamp

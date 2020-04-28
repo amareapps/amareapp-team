@@ -9,19 +9,37 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using PanCardView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Timers;
 
 namespace Chatter
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profile : ContentPage
     {
+        Timer timer = new Timer();
         public Profile()
         {
             InitializeComponent();
+            timer.Elapsed += Timer_Elapsed;
+            timer.Interval = 2000;
+            timer.Enabled = true;
+            timer.Start();
         }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (autoSlider.SelectedIndex == 2)
+                    autoSlider.SelectedIndex = 0;
+                else
+                    autoSlider.SelectedIndex += 1;
+            });
+        }
+
         protected override void OnAppearing()
         {
             retrieveUserProp();
