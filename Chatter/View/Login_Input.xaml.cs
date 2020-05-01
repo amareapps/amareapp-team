@@ -58,9 +58,8 @@ namespace Chatter
                         activityIndicator.IsRunning = false;
                         return;
                     }
-                    var looper = JsonConvert.DeserializeObject<List<UserModel>>(response);
                     response = response.Replace(@"\", "");
-
+                    var looper = JsonConvert.DeserializeObject<List<UserModel>>(response); 
                     foreach (UserModel model in looper)
                     {
                         var webClient = new WebClient();

@@ -12,8 +12,8 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using Xamd.ImageCarousel.Forms.Plugin.Droid;
 using Firebase.Database;
-using Xamarin.Forms;
 using PanCardView.Droid;
+using CarouselView.FormsPlugin.Android;
 
 namespace Chatter.Droid
 {
@@ -31,7 +31,8 @@ namespace Chatter.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
-            Forms.SetFlags("CollectionView_Experimental");
+            //Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
+            Xamarin.Forms.Forms.SetFlags(new string[] { "CarouselView_Experimental", "IndicatorView_Experimental" });
             ImageCarouselRenderer.Init();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             RequestPermissions(permissionGroup, 0);

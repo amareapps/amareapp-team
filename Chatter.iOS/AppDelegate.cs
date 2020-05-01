@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using CarouselView.FormsPlugin.iOS;
 using Foundation;
 using PanCardView.iOS;
 using UIKit;
+using Xamarin.Forms;
 
 namespace Chatter.iOS
 {
@@ -23,6 +24,8 @@ namespace Chatter.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            global::Xamarin.Forms.Forms.SetFlags(new[] { "CarouselView_Experimental", "IndicatorView_Experimental" });
+            CarouselViewRenderer.Init();
             global::Xamarin.Forms.Forms.Init();
             CardsViewRenderer.Preserve();
             LoadApplication(new App());

@@ -23,13 +23,15 @@ namespace Chatter.Model
             get;
             set;
         } //base64
-        public string about { get; set; }
-        public string job_title { get; set; }
-        public string company { get; set; }
-        public string school { get; set; }
-        public string city { get; set; }
-        public string show_age {  get; set; }
-        public string show_distance { get; set; }
-        public string phone_number { get; set; }
+        public string about { get; set; } = "";
+        public string job_title { get; set; } = "";
+        public string company { get; set; } = "";
+        public string school { get; set; } = "";
+        public string city { get; set; } = "";
+        public string show_age { get; set; } = "";
+        public string show_distance { get; set; } = "";
+        public string phone_number { get; set; } = "";
+        public string birthdate
+        { get; set; } = "";
     }   
 }

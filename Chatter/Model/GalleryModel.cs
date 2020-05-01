@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Chatter.Model
 {
-    class GalleryModel
+    public class GalleryModel
     {
        [PrimaryKey,AutoIncrement]
         public int id { get; set; }

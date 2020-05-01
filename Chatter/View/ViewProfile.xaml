@@ -1,15 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:Chatter.Classes" 
              mc:Ignorable="d"
-             x:Class="Chatter.View.ViewProfile">
+             x:Class="Chatter.View.ViewProfile" BackgroundColor="White">
+    <Page.Resources>
+        <local:BirthdaytoAgeConverter x:Key="birthdaytoage"></local:BirthdaytoAgeConverter>
+    </Page.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="500" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                </Grid.RowDefinitions>
+            <Frame HasShadow="True" IsClippedToBounds="True" Grid.Row="0" Padding="0">
+                    <AbsoluteLayout>
+                        <CarouselView x:Name="galleryView" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Frame HasShadow="True"
+                                               BorderColor="DarkGray"
+                                               CornerRadius="5"
+                                               Margin="0"
+                                               Padding="0"
+                                               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <ImageButton Source="{Binding image}" 
+                                                         HorizontalOptions="FillAndExpand" 
+                                                         VerticalOptions="FillAndExpand" 
+                                                         Aspect="AspectFill"/>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <IndicatorView x:Name="indicatorView" AbsoluteLayout.LayoutBounds="0.5,1,1,0.05" AbsoluteLayout.LayoutFlags="All"
+                                    IndicatorColor="LightGray" BackgroundColor="Transparent" 
+                                    IndicatorView.ItemsSourceBy="galleryView"
+                                    SelectedIndicatorColor="Black"
+                                    HorizontalOptions="Center"/>
+                    </AbsoluteLayout>
+                </Frame>
+            <Frame HasShadow="True" Grid.Row="1">
+                <StackLayout Margin="0" Padding="0">
+                    <Label Text="{Binding username}" TextColor="Black" FontAttributes="Bold" FontSize="Large"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding gender}" FontSize="Large" VerticalTextAlignment="Center"></Label>
+                            <Label Text="," FontSize="Large"></Label>
+                            <Label Text="{Binding birthdate,Converter={StaticResource birthdaytoage}}" FontSize="Large"></Label>
+                        </StackLayout>
+                        <Label Text="{Binding school}"></Label>
+                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0">
+                            <Label Text="About" FontSize="Medium"></Label>
+                            <Label Margin="10" Text="{Binding about}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+            </Frame>
+            <Frame HasShadow="True" Grid.Row="2" Padding="0" Margin="0">
+                <Button Text="Report this user" BackgroundColor="White" TextColor="Red" FontSize="Medium"/>
+            </Frame>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</pages:PopupPage>

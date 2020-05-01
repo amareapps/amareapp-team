@@ -19,9 +19,12 @@
                             <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="20" HasShadow="True">
                                 <AbsoluteLayout Grid.Row="0" HorizontalOptions="Center">
                                     <Image x:Name="userImage" HeightRequest="600" WidthRequest="400"  HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Source="{Binding image}" Grid.Row="1"/>
-                                <Label Text="{Binding username}" TextColor="White" FontSize="40" FontAttributes="Bold"  BackgroundColor="#77000000" HorizontalOptions="Center"                         
+                                    <Label Text="{Binding username}" TextColor="White" FontSize="40" FontAttributes="Bold"  BackgroundColor="#77000000" HorizontalOptions="Center"                         
                                        AbsoluteLayout.LayoutFlags="PositionProportional"
                                        AbsoluteLayout.LayoutBounds="0.1,0.9,-1,-1">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
                                 </Label>
                                     <ActivityIndicator BindingContext="{x:Reference userImage}" IsRunning="{Binding IsLoading}"></ActivityIndicator>
                             </AbsoluteLayout>
@@ -36,9 +39,35 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ImageButton CornerRadius="20" Padding="10" BorderColor="Black" Source="close.png" Grid.Column="0" BackgroundColor="White"  x:Name="dislikeButton" VerticalOptions="End" HorizontalOptions="Center"></ImageButton>
-                <ImageButton Scale="1.3" CornerRadius="20" Padding="10" BorderColor="Black" Source="reload.png" Grid.Column="1" BackgroundColor="White"  x:Name="reloadButton" VerticalOptions="End" HorizontalOptions="Center"></ImageButton>
-                <ImageButton CornerRadius="20" Padding="10" BorderColor="Black" Source="heart.png" Grid.Column="2" BackgroundColor="White"  x:Name="heartButton" VerticalOptions="End" HorizontalOptions="Center" Clicked="heartButton_Clicked"></ImageButton>
+                <ImageButton CornerRadius="20" 
+                             Padding="10" 
+                             BorderColor="Black" 
+                             Source="close.png" 
+                             Grid.Column="0" 
+                             BackgroundColor="White" 
+                             x:Name="dislikeButton" 
+                             VerticalOptions="End" 
+                             HorizontalOptions="Center" Clicked="dislikeButton_Clicked"/>
+                <ImageButton Scale="1.3" 
+                             CornerRadius="20" 
+                             Padding="10" 
+                             BorderColor="Black" 
+                             Source="reload.png" 
+                             Grid.Column="1" 
+                             BackgroundColor="White"  
+                             x:Name="reloadButton" 
+                             VerticalOptions="End" 
+                             HorizontalOptions="Center" Clicked="reloadButton_Clicked"/>
+                <ImageButton CornerRadius="20" 
+                             Padding="10"
+                             BorderColor="Black" 
+                             Source="heart.png" 
+                             Grid.Column="2" 
+                             BackgroundColor="White"  
+                             x:Name="heartButton" 
+                             VerticalOptions="End" 
+                             HorizontalOptions="Center" 
+                             Clicked="heartButton_Clicked"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

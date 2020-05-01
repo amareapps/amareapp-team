@@ -19,7 +19,7 @@
                 </Grid.RowDefinitions>
                 <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
                 <Button BackgroundColor="Transparent" ImageSource="backButton.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" x:Name="backButton" Clicked="backButton_Clicked"/>
-                <Image x:Name="userImage" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="0"></Image>
+                <Image x:Name="userImage" Source="{Binding image,Converter={StaticResource base64toImageSource}}" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="0"></Image>
                 <Label x:Name="lblReceiver" VerticalOptions="Center" FontSize="Medium" BackgroundColor="Transparent" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3"/>
             </Grid>
             <ListView Grid.Row="1" Grid.ColumnSpan="5"  x:Name="ChatList"

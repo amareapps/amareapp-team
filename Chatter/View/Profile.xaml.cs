@@ -13,6 +13,8 @@ using PanCardView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Timers;
+using Chatter.Classes;
+using Plugin.Media.Abstractions;
 
 namespace Chatter
 {
@@ -20,6 +22,8 @@ namespace Chatter
     public partial class Profile : ContentPage
     {
         Timer timer = new Timer();
+        ApiConnector api = new ApiConnector();
+        FireStorage fireStorage = new FireStorage();
         public Profile()
         {
             InitializeComponent();
@@ -94,8 +98,7 @@ namespace Chatter
 
         private void ProfileImage_Clicked(object sender, EventArgs e)
         {
-            ImageSelection selectioner = new ImageSelection();
-            Navigation.PushModalAsync(selectioner);
+            imagePicker.Focus();
         }
 
         private void UpdateProfileButton_Clicked(object sender, EventArgs e)
@@ -129,6 +132,34 @@ namespace Chatter
             {
                 DisplayAlert("Error!",ex.ToString(),"Okay");
             }
+        }
+
+        private async void imagePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadingIndicator.IsRunning = true;
+            loadingIndicator.IsVisible = true;
+            Picker picker = sender as Picker;
+            string userId = Application.Current.Properties["Id"].ToString().Replace("\"", "");
+            if (picker.SelectedIndex == -1)
+                return;
+            ImageOption imageOption = new ImageOption();
+            MediaFile imagePath = null;
+            if (picker.SelectedIndex == 0)
+            {
+                imagePath = await imageOption.TakePhoto();
+            }
+            else if (picker.SelectedIndex == 1)
+            {
+                imagePath = await imageOption.UploadPhoto();
+            }
+            string imageLink = await fireStorage.StoreImages(imagePath.GetStream(), userId);
+            await api.updateProfilePicture(userId, imageLink);
+            await api.syncUserData(userId);
+            retrieveUserProp();
+            imagePicker.IsVisible = false;
+            imagePicker.SelectedIndex = -1;
+            loadingIndicator.IsRunning = false;
+            loadingIndicator.IsVisible = false;
         }
     }
 }

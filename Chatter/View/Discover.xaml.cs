@@ -21,6 +21,9 @@ using SQLite;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Android.Media;
 using Xamarin.Essentials;
+using Chatter.View;
+using Rg.Plugins.Popup.Services;
+using Chatter.Classes;
 
 namespace Chatter
 {
@@ -30,6 +33,7 @@ namespace Chatter
         ObservableCollection<ImageStorage> imageSources = new ObservableCollection<ImageStorage>();
         private string currentUserIdSelected = "";
         ImageStorage currentItem;
+        ApiConnector api = new ApiConnector();
         bool isLiked = false;
         private int liked_Id = 0;
         public string currentLocation = "";
@@ -197,6 +201,29 @@ namespace Chatter
                 return true;
 
             return false;
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ViewProfile(currentUserIdSelected));
+            //await PopupNavigation.Instance.PushAsync();
+        }
+
+        private async void dislikeButton_Clicked(object sender, EventArgs e)
+        {
+            string user_id = Application.Current.Properties["Id"].ToString().Replace("\"", "");
+            await api.saveToDislikedUser(user_id, currentUserIdSelected);
+            imageSources.Remove(currentItem);
+        }
+        private async void reloadButton_Clicked(object sender, EventArgs e)
+        {
+            string user_id = Application.Current.Properties["Id"].ToString().Replace("\"", "");
+            foreach (ImageStorage model in imageSources)
+            {
+                await api.saveToDislikedUser(user_id, model.id);
+                imageSources.Remove(currentItem);
+            }
+            OnAppearing();
         }
     }
 }

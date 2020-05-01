@@ -87,7 +87,11 @@ namespace Chatter
             }
             else
             {
-                await api.getUserModel(number);
+                var value = await api.getUserModel(number);
+                if (value == null) {
+                    await DisplayAlert("Error!",value.username,"Okay");
+                }
+                Application.Current.Properties["Id"] = "\"" + value.id + "\"";
                 await Navigation.PushModalAsync(new MainPage());
                 await Navigation.PopToRootAsync();
             }
@@ -106,9 +110,9 @@ namespace Chatter
                 content.Add(new StringContent(locationString), "location");
                 content.Add(new StringContent(imageString), "image");
                 content.Add(new StringContent(number), "phone_number");
+                content.Add(new StringContent(birthdatePicker.Date.ToString()), "birthdate");
                 var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=insert", content);
                 request.EnsureSuccessStatusCode();
-                await DisplayAlert("Check", request.ToString(), "Okay");
                 var response = await request.Content.ReadAsStringAsync();
                 var exec = await DisplayAlert("Congratulations!", "You are succesfully registered", null, "OK");
             }

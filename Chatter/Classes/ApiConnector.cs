@@ -1,4 +1,5 @@
 ﻿using Android.Graphics;
+using Android.Media;
 using Chatter.Model;
 using Newtonsoft.Json;
 using SQLite;
@@ -92,7 +93,6 @@ namespace Chatter.Classes
             {
                 return null;
             }
-            return null;
         }
         public async Task saveToSqlite(UserModel userLogged)
         {
@@ -267,5 +267,133 @@ namespace Chatter.Classes
                 conn.InsertOrReplace(model);
             }
         }
+        public async Task<UserModel> getSpeificUser(string id)
+        {
+            try
+            {
+                using (var cl = new HttpClient())
+                {
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+                    string urlstring = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_single&id=" + id;
+                    var request = await cl.GetAsync(urlstring);
+                    request.EnsureSuccessStatusCode();
+                    var response = await request.Content.ReadAsStringAsync();
+                    response = response.Replace(@"\","");
+                    //response = response.Replace("null","\"\"");
+                    if (response.Contains("Undefined"))
+                    {
+                        return null;
+                    }
+                    var looper = JsonConvert.DeserializeObject<UserModel>(response, settings);
+                    return looper;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public async Task<List<GalleryModel>> otherUserImageList(string id)
+        {
+            try
+            {
+                using (var cl = new HttpClient())
+                {
+                    string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_gallery&user_id=" + id + "";
+                    var request = await cl.GetAsync(urlString);
+                    request.EnsureSuccessStatusCode();
+                    var response = await request.Content.ReadAsStringAsync();
+                    //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
+                    if (response.ToString().Contains("Undefined"))
+                    {
+                        return null;
+                    }
+                    var modifString = response.Replace(@"\", "");
+                    var looper = JsonConvert.DeserializeObject<List<GalleryModel>>(modifString).ToList();
+                    return looper;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task saveToDislikedUser(string user_id,string usertodislike)
+        {
+            var client = new HttpClient();
+            var form = new MultipartFormDataContent();
+            MultipartFormDataContent content = new MultipartFormDataContent();
+            content.Add(new StringContent(user_id), "user_id");
+            content.Add(new StringContent(usertodislike), "disliked_user");
+            var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=insert_dislike", content);
+            request.EnsureSuccessStatusCode();
+            var response = await request.Content.ReadAsStringAsync();
+        }
+        public async Task updateProfilePicture(string user_id,string image)
+        {
+            var client = new HttpClient();
+            var form = new MultipartFormDataContent();
+            MultipartFormDataContent content = new MultipartFormDataContent();
+            content.Add(new StringContent(user_id), "id");
+            content.Add(new StringContent(image), "image");
+            var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=update_profile_picture", content);
+            request.EnsureSuccessStatusCode();
+            var response = await request.Content.ReadAsStringAsync();
+        }
+        public async Task syncUserData(string id)
+        {
+                try
+                {
+                    using (var cl = new HttpClient())
+                    {
+                        string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_single&id=" + id + "";
+                        var request = await cl.GetAsync(urlString);
+                        request.EnsureSuccessStatusCode();
+                        var response = await request.Content.ReadAsStringAsync();
+                        //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
+                        if (response.ToString().Contains("Undefined"))
+                        {
+                            return;
+                        }
+                        var modifString = response.Replace(@"\", "");
+                        var looper = JsonConvert.DeserializeObject<UserModel>(modifString);
+                        looper.image = converttoBase64(looper.image);
+                        syncUsertoSqlite(looper);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return;
+                }
+        }
+        private void syncUsertoSqlite(UserModel model)
+        {
+            string applicationFolderPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "databaseFolder");
+            System.IO.Directory.CreateDirectory(applicationFolderPath);
+            string databaseFileName = System.IO.Path.Combine(applicationFolderPath, "amera.db");
+            using (SQLiteConnection conn = new SQLiteConnection(databaseFileName))
+            {
+                conn.CreateTable<UserModel>();
+                conn.InsertOrReplace(model);
+            }
+        }
+        private string converttoBase64(string imageUrl)
+        {
+            var webClient = new WebClient();
+            byte[] imageBytes = webClient.DownloadData(imageUrl);
+            Bitmap bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+            using (var stream = new MemoryStream())
+            {
+                bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                var bytes = stream.ToArray();
+                var str = Convert.ToBase64String(bytes);
+                return str;
+            }
+        }
+
     }
 }
