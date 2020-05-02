@@ -38,8 +38,8 @@ namespace Chatter
             InitializeComponent();
             number = _number;
 
-            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.DarkRed;
-            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.White;
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("98000b");
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("fffcf8");
             BindingContext = new UserModelStorage();
         }
         private void clearFields()
@@ -53,7 +53,7 @@ namespace Chatter
             if (userNameEntry.Text == string.Empty || passwordEntry.Text == string.Empty || 
                 emailEntry.Text == string.Empty || gender == string.Empty || imageString == string.Empty)
             {
-                await DisplayAlert("Incomplete credentials", "Please fill the required fields", "Okay");
+                await DisplayAlert("Oops!", "Incomplete credentials! Please fill the required fields.", "Okay");
                 return;
             }
             activityIndicator.IsRunning = true;
@@ -73,7 +73,7 @@ namespace Chatter
 
             if (imageString == string.Empty)
             {
-                await DisplayAlert("Image Selection", "Picture is required", "Okay");
+                await DisplayAlert("Image Selection", "Image required.", "Okay");
                 return;
             }
             await uploadtoServer();
@@ -89,7 +89,7 @@ namespace Chatter
             {
                 var value = await api.getUserModel(number);
                 if (value == null) {
-                    await DisplayAlert("Error!",value.username,"Okay");
+                    await DisplayAlert("Oops!",value.username,"Okay");
                 }
                 Application.Current.Properties["Id"] = "\"" + value.id + "\"";
                 await Navigation.PushModalAsync(new MainPage());
@@ -114,11 +114,11 @@ namespace Chatter
                 var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=insert", content);
                 request.EnsureSuccessStatusCode();
                 var response = await request.Content.ReadAsStringAsync();
-                var exec = await DisplayAlert("Congratulations!", "You are succesfully registered", null, "OK");
+                var exec = await DisplayAlert("Congratulations!", "You have successfully registered!", null, "Okay");
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error!",ex.ToString(),"Okay");
+                await DisplayAlert("Oops!",ex.ToString(),"Okay");
             }
         }
         private async Task uploadtoServer()
@@ -200,7 +200,7 @@ namespace Chatter
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
-                await DisplayAlert("Upload not supported on this device", "sdadsa", "Okay");
+                await DisplayAlert("Oops!", "Image is not supported on this device. Please try again.", "Okay");
                 return;
             }
 

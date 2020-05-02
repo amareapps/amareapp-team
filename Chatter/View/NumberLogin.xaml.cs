@@ -23,8 +23,8 @@ namespace Chatter.View
         public NumberLogin()
         {
             InitializeComponent();
-            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.DarkRed;
-            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.White;
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("98000b");
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("fffcf8");
             GetJsonData();
         }
         void GetJsonData()
@@ -68,7 +68,7 @@ namespace Chatter.View
                 else
                 {
                     continueButton.IsEnabled = true;
-                    continueButton.BackgroundColor = Color.DarkRed;
+                    continueButton.BackgroundColor = Color.FromHex("98000b");
                 }
             }
         }

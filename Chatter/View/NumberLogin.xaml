@@ -4,10 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Chatter.View.NumberLogin" Title="Register">
+             x:Class="Chatter.View.NumberLogin" Title="Log In" BackgroundColor="#fffcf8">
     <ContentPage.Content>
         <StackLayout Spacing="40" Margin="20">
-            <Label FontSize="40" Text="My number is" FontAttributes="Bold"></Label>
+            <StackLayout VerticalOptions="Center" Margin="0,0,0,0">
+                <Label Text="Mobile Verification" FontSize="30" TextColor="DimGray" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold"></Label>
+            </StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="AUTO"></RowDefinition>
@@ -21,23 +23,20 @@
                 <Picker 
                     x:Name="countryCodePicker"
                     Grid.Row="0" Grid.Column="0"
-                    Title="Country Code" SelectedIndexChanged="countryCodePicker_SelectedIndexChanged"/>
-                <Image Source="profile.png" HeightRequest="10" WidthRequest="10" Grid.Row="0" Grid.Column="1"></Image>
+                    Title="Pick your country code" SelectedIndexChanged="countryCodePicker_SelectedIndexChanged" TextColor="Black" FontSize="Small"/>
+                <Image Source="earth.png" HeightRequest="20" WidthRequest="20" Grid.Row="0" Grid.Column="1"></Image>
                 <Label x:Name="dialCodeLabel" Grid.Row="0" Grid.Column="2"></Label>
-                <Entry MaxLength="11" x:Name="phoneEntry" TextChanged="phoneEntry_TextChanged" Grid.Row="1" Grid.ColumnSpan="3" Keyboard="Numeric" Placeholder="Phone Number"></Entry>
+                <Entry MaxLength="11" x:Name="phoneEntry" TextChanged="phoneEntry_TextChanged" Grid.Row="1" Grid.ColumnSpan="3" Keyboard="Numeric" Placeholder="Enter your phone number here..." TextColor="Black" FontSize="Small"></Entry>
             </Grid>
             <Label 
-                Text="When you tap 'Continue' Amare will send a text with verification code.Message amd data rates may apply. The veritied phone number can be used to login">
-            </Label>
+                Text="Note: When you tap 'Continue', Amare will send you a text message with the corresponding verification code. Message and data rates may apply. Only a verified phone number can be used to login." FontSize="Micro" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Margin="5,0,20,0" />
             <Button BackgroundColor="Gray" 
-                    BorderColor="#707070" 
-                    BorderWidth="1" 
                     IsEnabled="False" 
                     CornerRadius="30" 
                     x:Name="continueButton" 
-                    TextColor="White" 
+                    TextColor="#fffcf8" 
                     FontAttributes="Bold" 
-                    FontSize="Large" 
+                    FontSize="Medium" 
                     Clicked="continueButton_Clicked" 
                     HeightRequest="50"
                     WidthRequest="300" 

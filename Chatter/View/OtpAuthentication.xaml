@@ -4,19 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Chatter.View.OtpAuthentication" BackgroundColor="WhiteSmoke">
+             x:Class="Chatter.View.OtpAuthentication" BackgroundColor="#FFFCF8" Title="Mobile Verification">
     <ContentPage.Content>
-        <StackLayout Spacing="50" Margin="20">
-            <Label Text="VERIFY" HorizontalOptions="Center" FontSize="40"/>
-            <Label Text="Enter the code received on the registered number" HorizontalOptions="Center"/>
-            <Entry x:Name="codeEntry" HorizontalTextAlignment="Center" TextChanged="codeEntry_TextChanged"/>
+        <StackLayout Spacing="50" Margin="20,80,20,20">
+            <Label Text="Enter the code received below:" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="Body" FontAttributes="Bold"/>
+            <Entry x:Name="codeEntry" HorizontalTextAlignment="Center" TextChanged="codeEntry_TextChanged" FontSize="Title"/>
             <Button BackgroundColor="Gray" 
-                    BorderColor="#707070" 
-                    BorderWidth="1" 
                     IsEnabled="False" 
                     CornerRadius="30" 
                     x:Name="confirmButton" 
-                    TextColor="White" 
+                    TextColor="#fffcf8" 
                     FontAttributes="Bold" 
                     FontSize="Large" 
                     Clicked="confirmButton_Clicked" 
