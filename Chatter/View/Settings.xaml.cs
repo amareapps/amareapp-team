@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
 using Chatter.Classes;
+using System.Linq;
 
 namespace Chatter
 {
@@ -100,8 +101,14 @@ namespace Chatter
         {
 
             deleteFromSqlite();
-            App.Current.MainPage.Navigation.PopModalAsync();
-            Navigation.PushModalAsync(new Login());
+            var navigationPages = Navigation.NavigationStack.ToList();
+            /*foreach (var page in navigationPages)
+            {
+                DisplayAlert("Check!",page.ToString(),"Okay");
+            }
+            */
+            App.Current.MainPage = new NavigationPage(new Login());
+            //Navigation.PushModalAsync();
             //Navigation.PopModalAsync();
         }
         private void deleteFromSqlite()
