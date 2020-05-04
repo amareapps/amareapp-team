@@ -6,76 +6,87 @@
              mc:Ignorable="d"
              xmlns:gradient="clr-namespace:Chatter.Classes"
              xmlns:Local="clr-namespace:Chatter"
-             x:Class="Chatter.ProfileMaintenance" >
-    
-    <ContentPage x:Name="emailContent">
-        <StackLayout Margin="20,10,20,20">
-            <Label Text="My &#x0a;email is" Margin="0,50,0,0" FontSize="50"/>
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                <Entry x:Name="emailEntry" HorizontalOptions="FillAndExpand" Placeholder="Email Address" FontSize="Large" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="5" />
-                <Label Margin="15,0,20,0" VerticalOptions="Start" Grid.Row="1" Text="Please enter your email in order to recover your account later"></Label>
-            </Grid>
-            <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
-                <gradient:GradientColorStack BackgroundColor="Transparent" StartColor="#ff0000" EndColor="#ff00ca" GradientColorOrientation="Horizontal" TextColor="White" CornerRadius="30" Text="SIGN UP" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></gradient:GradientColorStack>
-            </Frame>
-        </StackLayout>
-    </ContentPage>
-    <ContentPage x:Name="passwordContent">
-        <StackLayout Margin="20,10,20,20">
-            <Label Text="My &#x0a;password is" Margin="0,50,0,0" FontSize="50"/>
-            <Entry x:Name="passwordEntry" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Password" FontSize="Large" Grid.Row="0" Margin="5" />
+             x:Class="Chatter.ProfileMaintenance" Title="Register with us!">
 
-            <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
-                <gradient:GradientColorStack BackgroundColor="Transparent" StartColor="#ff0000" EndColor="#ff00ca" GradientColorOrientation="Horizontal" TextColor="White" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></gradient:GradientColorStack>
-            </Frame>
-        </StackLayout>
-    </ContentPage>
-    <ContentPage  x:Name="nameContent">
+    <ContentPage x:Name="emailContent" BackgroundColor="#fffcf8">
         <StackLayout Margin="20,10,20,20">
-            <Label Text="My first&#x0a;name is" Margin="0,50,0,0" FontSize="50"/>
+            <StackLayout VerticalOptions="Center" Margin="0,30,0,0">
+                <Label Text="My &#x0a;email is..." FontSize="50" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold"></Label>
+            </StackLayout>
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                <Entry x:Name="userNameEntry" HorizontalOptions="FillAndExpand" Placeholder="First Name" FontSize="Large" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="5" />
-                <Label Margin="15,0,20,0" VerticalOptions="Start" Grid.Row="1" Text="This is how it will appear in Tinder"></Label>
+                <Entry x:Name="emailEntry" HorizontalOptions="FillAndExpand" Placeholder="Enter your email address here..." FontSize="Medium" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="5" />
+                <Label Margin="10,0,20,0" VerticalOptions="Start" Grid.Row="1" Text="Note: Enter your email address in order to recover your account later." FontSize="Micro" FontAttributes="Bold"></Label>
             </Grid>
             <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
-                <gradient:GradientColorStack BackgroundColor="Transparent" StartColor="#ff0000" EndColor="#ff00ca" GradientColorOrientation="Horizontal" TextColor="White" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></gradient:GradientColorStack>
+                <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></Button>
             </Frame>
         </StackLayout>
     </ContentPage>
-    <ContentPage x:Name="birthdayContent">
+    <ContentPage x:Name="passwordContent" BackgroundColor="#fffcf8">
         <StackLayout Margin="20,10,20,20">
-            <Label Text="My &#x0a;birthday is" Margin="0,50,0,0" FontSize="50"/>
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" RowSpacing="20">
-                <DatePicker x:Name="birthdatePicker" FontSize="Large"></DatePicker>
-                <Label Margin="15,0,20,0" VerticalOptions="Start" Grid.Row="1" Text="Your age will be public"></Label>
-            </Grid>
-            <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
-                <gradient:GradientColorStack BackgroundColor="Transparent" StartColor="#ff0000" EndColor="#ff00ca" GradientColorOrientation="Horizontal" TextColor="White" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></gradient:GradientColorStack>
-            </Frame>
-        </StackLayout>
-    </ContentPage>
-    <ContentPage  x:Name="genderContent">
-        <StackLayout Margin="20,10,20,20">
-            <Label Text="I am a" Margin="0,50,0,0" FontSize="50"/>
+            <StackLayout VerticalOptions="Center" Margin="0,30,0,0">
+                <Label Text="My &#x0a;password is..." FontSize="50" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold"></Label>
+            </StackLayout>
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                <Button Grid.Row="0" CornerRadius="30" Text="Female" Clicked="Button_Clicked"></Button>
-                <Button Grid.Row="1" CornerRadius="30" Text="Male" Clicked="Button_Clicked"></Button>
+                <Entry x:Name="passwordEntry" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Placeholder="Enter your password here..." FontSize="Medium" Grid.Row="0" Margin="5"/>
+                <Label Margin="10,0,20,0" Grid.Row="1"></Label>
             </Grid>
             <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
-                <gradient:GradientColorStack BackgroundColor="Transparent" StartColor="#ff0000" EndColor="#ff00ca" GradientColorOrientation="Horizontal" TextColor="White" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></gradient:GradientColorStack>
+                <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></Button>
             </Frame>
         </StackLayout>
     </ContentPage>
-    <ContentPage  x:Name="pictureContent">
+    <ContentPage  x:Name="nameContent" BackgroundColor="#fffcf8">
+        <StackLayout Margin="20,10,20,20">
+            <StackLayout VerticalOptions="Center" Margin="0,30,0,0">
+                <Label Text="My &#x0a;name is..." FontSize="50" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold"></Label>
+            </StackLayout>
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <Entry x:Name="userNameEntry" HorizontalOptions="FillAndExpand" Placeholder="Enter your First Name here..." FontSize="Medium" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="5"/>
+                <Label Margin="10,0,20,0" FontAttributes="Bold" VerticalOptions="Start" Grid.Row="1" Text="Note: This is the name that will appear on your profile here in Amare." FontSize="Micro"></Label>
+            </Grid>
+            <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
+                <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></Button>
+            </Frame>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage x:Name="birthdayContent" BackgroundColor="#fffcf8">
+        <StackLayout Margin="20,10,20,20">
+            <StackLayout VerticalOptions="Center" Margin="0,30,0,0">
+                <Label Text="My &#x0a;birthday is..." FontSize="50" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold"></Label>
+            </StackLayout>
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <DatePicker x:Name="birthdatePicker" FontSize="Title" Margin="5" ></DatePicker>
+                <Label Margin="10,0,20,0" FontAttributes="Bold" VerticalOptions="Start" Grid.Row="1" Text="Note: Your age will be viewed as public." FontSize="Micro"></Label>
+            </Grid>
+            <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
+                <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></Button>
+            </Frame>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage  x:Name="genderContent" BackgroundColor="#fffcf8">
+        <StackLayout Margin="20,10,20,20">
+            <StackLayout VerticalOptions="Center" Margin="0,30,0,0">
+                <Label Text="I am a..." FontSize="50" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold"></Label>
+            </StackLayout>
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="50,0,50,0">
+                    <Button Grid.Row="0" CornerRadius="30" Text="WOMAN" Clicked="Button_Clicked" BackgroundColor="#fffcf8" TextColor="#98000b" BorderWidth="2" BorderColor="#98000b"></Button>
+                    <Button Grid.Row="1" CornerRadius="30" Text="MAN" Clicked="Button_Clicked" BackgroundColor="#fffcf8" TextColor="#98000b" BorderWidth="2" BorderColor="#98000b"></Button>
+                </Grid>
+                <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
+                <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="nextContent"></Button>
+            </Frame>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage  x:Name="pictureContent" BackgroundColor="#fffcf8">
         <AbsoluteLayout>
             <StackLayout Margin="20,10,20,20" AbsoluteLayout.LayoutFlags="All"
               AbsoluteLayout.LayoutBounds="0,1,1,1">
-                <Label Text="My &#x0a;best pic is" Margin="0,50,0,0" FontSize="50"/>
-                <ImageButton Aspect="AspectFill" x:Name="chooseImageButton" Clicked="chooseImageButton_Clicked" Margin="0,0,0,80" BackgroundColor="Transparent" BorderColor="Black" BorderWidth="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="400" Source="add_photo.png">
+                <ImageButton Margin="0,50,0,0" Aspect="AspectFill" x:Name="chooseImageButton" Clicked="chooseImageButton_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HeightRequest="400" Source="add_pic.png" >
                 </ImageButton>
                 <Picker x:Name="imagePicker" IsVisible="False" SelectedIndexChanged="imagePicker_SelectedIndexChanged"></Picker>
                 <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
-                    <gradient:GradientColorStack BackgroundColor="Transparent" StartColor="#ff0000" EndColor="#ff00ca" GradientColorOrientation="Horizontal" TextColor="White" CornerRadius="30" Text="CONTINUE" FontSize="Large" FontAttributes="Bold" Clicked="continueButton_Clicked"></gradient:GradientColorStack>
+                    <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="30" Text="REGISTER" FontSize="Large" FontAttributes="Bold" Clicked="continueButton_Clicked"></Button>
                 </Frame>
             </StackLayout>
             <ActivityIndicator x:Name="activityIndicator" IsRunning="False" Color="CornflowerBlue" VerticalOptions="Center"

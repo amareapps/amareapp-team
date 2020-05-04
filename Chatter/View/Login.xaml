@@ -1,37 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:local="clr-namespace:Chatter.Classes"
              mc:Ignorable="d"
-             x:Class="Chatter.Login" BackgroundColor="WhiteSmoke" NavigationPage.HasNavigationBar="False">
+             x:Class="Chatter.Login" NavigationPage.HasNavigationBar="False" BackgroundImageSource="gradientbg.png">
     <ContentPage.Content>
-        <Grid VerticalOptions="StartAndExpand" Margin="20" RowSpacing="30">
+        <Grid VerticalOptions="CenterAndExpand" Margin="20,5,20,20" HorizontalOptions="CenterAndExpand" RowSpacing="5" ColumnSpacing="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="450"></RowDefinition>
+                <RowDefinition Height="300"></RowDefinition>
+                <RowDefinition Height="AUTO"></RowDefinition>
                 <RowDefinition Height="AUTO"></RowDefinition>
                 <RowDefinition Height="AUTO"></RowDefinition>
                 <RowDefinition Height="AUTO"></RowDefinition>
                 <RowDefinition Height="AUTO"></RowDefinition>
             </Grid.RowDefinitions>
-
-            <StackLayout Grid.Row="0" VerticalOptions="Center">
-                <Image Source="FINAL_AMERA.png" Aspect="Fill" HeightRequest="90" VerticalOptions="Center" WidthRequest="350"/>
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="3" Orientation="Vertical" VerticalOptions="Center">
+                <Image Source="FINAL_AMERA.png" Aspect="AspectFit" HeightRequest="100" VerticalOptions="Center" WidthRequest="200"/>
             </StackLayout>
-            <Frame IsClippedToBounds="True" HeightRequest="50" WidthRequest="300" CornerRadius="30" Grid.Row="1" Margin="0" Padding="0">
-                <local:GradientColorStack  StartColor="#fb0202" EndColor="#ff00ca" GradientColorOrientation="Horizontal" Padding="20,0,40,0" ImageSource="register.png" BorderColor="#707070" BorderWidth="1" CornerRadius="30" x:Name="phoneRegister"  BackgroundColor="Transparent" TextColor="White" Clicked="phoneRegister_Clicked"  HeightRequest="50" WidthRequest="300" Text="LOGIN WITH PHONE NUMBER" Grid.Row="1"></local:GradientColorStack>
-            </Frame>
-            <Button Padding="20,0,40,0" ImageSource="email.png" BorderColor="#707070" BorderWidth="1" CornerRadius="30" x:Name="LoginButton" BackgroundColor="WhiteSmoke" TextColor="Black" Clicked="LoginButton_Clicked"  HeightRequest="50" WidthRequest="300" Text="LOGIN with AMARE" Grid.Row="2"></Button>
-            <Button Padding="20,0,40,0" ImageSource="register.png" BorderColor="#707070" BorderWidth="1" CornerRadius="30" x:Name="registerButton"  BackgroundColor="WhiteSmoke" TextColor="Black" Clicked="registerButton_Clicked" HeightRequest="50" WidthRequest="300" Text="REGISTER IN AMARE" Grid.Row="3"></Button>
-            <Frame CornerRadius="30"  Grid.Row="4" 
-                                       HeightRequest="50"
-                                       WidthRequest="300"
-                                       Padding="0"
-                                       BorderColor="Red"
-                                       IsClippedToBounds="True">
-                <ImageButton x:Name="fbLoginButton" Clicked="fbLoginButton_Clicked" BorderColor="#707070" BorderWidth="1" CornerRadius="30" HeightRequest="50" WidthRequest="300" Aspect="AspectFill" Source="fb_login.png"></ImageButton>
-            </Frame>
+            <Button Padding="20,0,40,0" ImageSource="register.png" CornerRadius="30" x:Name="registerButton"  BackgroundColor="#fffcf3" TextColor="Black" Clicked="registerButton_Clicked" HeightRequest="50" WidthRequest="200" Text="REGISTER WITH AMARE" Grid.Row="1" Grid.ColumnSpan="3" VerticalOptions="Center"></Button>
+            <Button Margin="0,10,0,10" Padding="20,0,40,0" CornerRadius="30" x:Name="phoneRegister"  BackgroundColor="#fffcf3" TextColor="Black" Clicked="phoneRegister_Clicked"  HeightRequest="50" WidthRequest="200" Text="LOG IN WITH MOBILE NUMBER" Grid.Row="2" Grid.ColumnSpan="3" VerticalOptions="Center" ImageSource="mobile.png"/>
+            <Button Margin="0,0,0,0" Padding="20,0,40,0" ImageSource="email.png" CornerRadius="30" x:Name="LoginButton" BackgroundColor="#fffcf3" TextColor="Black" Clicked="LoginButton_Clicked"  HeightRequest="50" WidthRequest="200" Text="LOG IN WITH EMAIL ADDRESS" Grid.Row="3" VerticalOptions="Center" Grid.ColumnSpan="3"></Button>
+            <Image Source="or.png" Margin="0,15,0,0" Aspect="AspectFit" HeightRequest="50" WidthRequest="200" Grid.Row="4" Grid.ColumnSpan="3" VerticalOptions="Center"></Image>
+            <StackLayout Margin="0,15,0,0" Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalOptions="Center">
+                <ImageButton x:Name="fbLoginButton" Margin="10,0,10,0" Source="fb_logo.png" Clicked="fbLoginButton_Clicked" HeightRequest="55" WidthRequest="55" HorizontalOptions="Center" BackgroundColor="Transparent"  Grid.Column="0" />
+                <ImageButton Margin="10,0,10,0" Source="ig_logo.png" Clicked="fbLoginButton_Clicked" HeightRequest="55" WidthRequest="55" HorizontalOptions="Center" BackgroundColor="Transparent"  Grid.Column="1" />
+                <ImageButton Margin="10,0,10,0" Source="google_logo.png" Clicked="fbLoginButton_Clicked" HeightRequest="55" WidthRequest="55" HorizontalOptions="Center" BackgroundColor="Transparent"  Grid.Column="2" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -4,19 +4,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gradient="clr-namespace:Chatter.Classes"
              mc:Ignorable="d"
-             x:Class="Chatter.Login_Input">
+             x:Class="Chatter.Login_Input" >
     <AbsoluteLayout HorizontalOptions="Center" VerticalOptions="Center">
         <StackLayout AbsoluteLayout.LayoutFlags="All"
-              AbsoluteLayout.LayoutBounds="0,1,1,1" Margin="20,0,20,0" Padding="30,50,30,50" Spacing="24" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
-            <Label HorizontalOptions="Center" Text="Enter User Credentials" FontSize="15"></Label>
+              AbsoluteLayout.LayoutBounds="0,1,1,1" Margin="20,0,20,0" Padding="30,30,30,30" Spacing="24" BackgroundColor="#fffcf8" HorizontalOptions="Center" VerticalOptions="Center" Opacity="3">
+            <Image Source="Amare_logo.png" Aspect="AspectFit" HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Welcome to Amare!" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
             <StackLayout>
-                <Entry WidthRequest="450" x:Name="emailEntry" Placeholder="Enter your e-mail" FontSize="Large"></Entry>
-                <Entry WidthRequest="450" x:Name="passEntry" Placeholder="Enter your password" FontSize="Large" IsPassword="True"></Entry>
+                <Entry WidthRequest="450" x:Name="emailEntry" Placeholder="Enter your e-mail address here..." FontSize="Small"></Entry>
+                <Entry WidthRequest="450" x:Name="passEntry" Placeholder="Enter your password here..." FontSize="Small" IsPassword="True"></Entry>
             </StackLayout>
-            <Button CornerRadius="30" x:Name="loginButton" Clicked="loginButton_Clicked" Text="Login" BackgroundColor="DarkRed" TextColor="White"></Button>
+            <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
+                <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="20" x:Name="loginButton" Clicked="loginButton_Clicked" Text="LOG IN" FontSize="Medium" FontAttributes="Bold"></Button>
+            </Frame>
         </StackLayout>
-        <ActivityIndicator x:Name="activityIndicator" IsRunning="False" Color="Red" VerticalOptions="Center"
+        <ActivityIndicator x:Name="activityIndicator" IsRunning="False" Color="#98000b" VerticalOptions="Center"
                                HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
                                AbsoluteLayout.LayoutFlags="PositionProportional"
                                AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />

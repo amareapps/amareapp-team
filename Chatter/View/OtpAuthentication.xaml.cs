@@ -33,7 +33,7 @@ namespace Chatter.View
         {
             if (!await api.checkCode(number, codeEntry.Text))
             {
-                await DisplayAlert("Code", "Code mismatch!. Please try again", "Okay");
+                await DisplayAlert("Oops!", "Code mismatch!", "Try again");
                 return;
             }
             var user = await api.getUserModel(number);
@@ -60,7 +60,7 @@ namespace Chatter.View
             else
             {
                 confirmButton.IsEnabled = true;
-                confirmButton.BackgroundColor = Color.DarkRed;
+                confirmButton.BackgroundColor = Color.FromHex("98000b");
             }
         }
 
