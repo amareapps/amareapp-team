@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CarouselView.FormsPlugin.iOS;
+using FFImageLoading.Forms.Platform;
 using Foundation;
 using PanCardView.iOS;
 using UIKit;
@@ -27,6 +28,7 @@ namespace Chatter.iOS
             global::Xamarin.Forms.Forms.SetFlags(new[] { "CarouselView_Experimental", "IndicatorView_Experimental" });
             CarouselViewRenderer.Init();
             global::Xamarin.Forms.Forms.Init();
+            CachedImageRenderer.Init();
             CardsViewRenderer.Preserve();
             LoadApplication(new App());
 

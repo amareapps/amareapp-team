@@ -17,6 +17,10 @@ using System.Net;
 using System.IO;
 using Android.Graphics;
 using System.Text.RegularExpressions;
+using Chatter.Classes;
+using Chatter;
+using System.Net.WebSockets;
+using System.Threading;
 
 namespace Chatter
 {
@@ -26,11 +30,12 @@ namespace Chatter
         ObservableCollection<InboxModel> inboxModels = new ObservableCollection<InboxModel>();
         ObservableCollection<RecentMatchesModel> matchesModel = new ObservableCollection<RecentMatchesModel>();
         InboxModel modeler;
-        Timer timer = new Timer();
+        ApiConnector api = new ApiConnector();
         public InboxMessaging()
         {
             InitializeComponent();
-          //  Task.Run(async () => { await retrieveAll(); });
+
+            //  Task.Run(async () => { await retrieveAll(); });
         }
         private void SyncFromDb()
         {
@@ -39,24 +44,28 @@ namespace Chatter
         }
         protected async override void OnAppearing()
         {
-            activityIndicator.IsVisible = true;
-            activityIndicator.IsRunning = true;
-            activityIndicator.IsEnabled = true;
-            /*
-            await Task.Run(async () =>
+            await refreshData();
+            ClientWebSocket wsClient = new ClientWebSocket();
+            await wsClient.ConnectAsync(new Uri("ws://" + ApiConnection.Url + ":8088"), CancellationToken.None);
+            while (wsClient.State == WebSocketState.Open)
             {
-                // Run code here
-                await loadData();
-                await loadRecentMatches();
-                Device.BeginInvokeOnMainThread(() =>
+                WebSocketReceiveResult result;
+                var message = new ArraySegment<byte>(new byte[4096]);
+                string receivedMessage;
+                do
                 {
-                    SyncFromDb();
-                });
-            });
-            */
-            timer.Interval = 2000;
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
+                    result = await wsClient.ReceiveAsync(message, CancellationToken.None);
+                    var messageBytes = message.Skip(message.Offset).Take(result.Count).ToArray();
+                    receivedMessage = System.Text.Encoding.UTF8.GetString(messageBytes);
+                    var resultModel = JsonConvert.DeserializeObject<ChatModel>(receivedMessage);
+                    if (resultModel.receiver_id == Application.Current.Properties["Id"].ToString().Replace("\"", "") ||
+                        resultModel.sender_id == Application.Current.Properties["Id"].ToString().Replace("\"", ""))
+                    {
+                        await refreshData();
+                    }
+                }
+                while (!result.EndOfMessage);
+            }
         }
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -72,10 +81,19 @@ namespace Chatter
                 activityIndicator.IsEnabled = false;
             });
         }
+        private async Task refreshData()
+        {
+            await loadData();
+            await loadRecentMatches();
+            SyncFromDb();
+            activityIndicator.IsVisible = false;
+            activityIndicator.IsRunning = false;
+            activityIndicator.IsEnabled = false;
+        }
         protected override void OnDisappearing()
         {
-            //Navigation.PopModalAsync();
-            timer.Stop();
+            Navigation.PopModalAsync();
+            //timer.Stop();
         }
         private async Task loadData()
         {
@@ -95,23 +113,23 @@ namespace Chatter
                 if (response.ToString().Contains("Undefined"))
                     return;
                 var looper = JsonConvert.DeserializeObject<List<InboxModel>>(response.ToString());
-                if (looper.Count == inboxModels.Count)
-                    return;
+                //if (looper.Count == inboxModels.Count)
+                //    return;
                 //await DisplayAlert("testlang","hahaha","okay");
                 foreach (InboxModel messageContent in looper)
                 {
-                    var webClient = new WebClient();
-                    byte[] imageBytes = webClient.DownloadData(messageContent.image);
+                    //var webClient = new WebClient();
+                    //byte[] imageBytes = webClient.DownloadData(messageContent.image);
 
-                    Bitmap bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                    Bitmap resizedImage = Bitmap.CreateScaledBitmap(bitmap, 50, 50, false);
-                    using (var stream = new MemoryStream())
-                    {
-                        resizedImage.Compress(Bitmap.CompressFormat.Png, 0, stream);
-                        var bytes = stream.ToArray();
-                        var str = Convert.ToBase64String(bytes);
-                        messageContent.image = str;
-                    }
+                    //Bitmap bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                    //Bitmap resizedImage = Bitmap.CreateScaledBitmap(bitmap, 50, 50, false);
+                    //using (var stream = new MemoryStream())
+                    //{
+                    //    resizedImage.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                     //   var bytes = stream.ToArray();
+                    //    var str = Convert.ToBase64String(bytes);
+                   //     messageContent.image = str;
+                    //}
                     if (!inboxModels.Any(x => x.session_id == messageContent.session_id))
                         saveToLocalDb(messageContent);
                    //     inboxModels.Add(messageContent);
@@ -148,17 +166,17 @@ namespace Chatter
                     return;
                 foreach (RecentMatchesModel matches in looper)
                 {
-                    var webClient = new WebClient();
-                    byte[] imageBytes = webClient.DownloadData(matches.image);
-                    Bitmap bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                    Bitmap resizedImage = Bitmap.CreateScaledBitmap(bitmap, 50, 50, false);
-                    using (var stream = new MemoryStream())
-                    {
-                        resizedImage.Compress(Bitmap.CompressFormat.Png, 0, stream);
-                        var bytes = stream.ToArray();
-                        var str = Convert.ToBase64String(bytes);
-                        matches.image = str;
-                    }
+                    //var webClient = new WebClient();
+                   // byte[] imageBytes = webClient.DownloadData(matches.image);
+                    //Bitmap bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                    ///Bitmap resizedImage = Bitmap.CreateScaledBitmap(bitmap, 50, 50, false);
+                    //using (var stream = new MemoryStream())
+                   // {
+                    //    resizedImage.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                   //     var bytes = stream.ToArray();
+                    //    var str = Convert.ToBase64String(bytes);
+                   //     matches.image = str;
+                   // }
                     if (!matchesModel.Any(x => x.user_id == matches.user_id))
                         saveRecentToLocalDb(matches);
                 }

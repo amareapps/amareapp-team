@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:local="clr-namespace:Chatter.Classes" 
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="http://xamarin.com/schemas/2014/forms"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="http://xamarin.com/schemas/2014/forms"    
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"  
              x:Class="Chatter.InboxMessaging" BackgroundColor="#f0f0f0">
     <Page.Resources>
@@ -40,8 +41,8 @@
                                        Padding="0"
                                        BorderColor="Red"
                                        IsClippedToBounds="True">
-                                            <Image Aspect="AspectFit"
-                                                   Source="{Binding image,Converter={StaticResource base64toImageSource}}"/>
+                                                <ffimageloading:CachedImage Aspect="AspectFit"
+                                                   Source="{Binding image}"/>
                                         </Frame>
                                     </Frame>
                                     <Label Text="{Binding username}" HorizontalOptions="Center" FontSize="Micro" FontAttributes="Bold"></Label>
@@ -53,11 +54,11 @@
                 </StackLayout>
                 <StackLayout Grid.Row="2">
                     <Label Text="Messages" FontSize="Medium" Margin="10,0,0,0" FontAttributes="Bold"></Label>
-                    <ListView  x:Name="InboxList" HasUnevenRows="True" Margin="0,0,0,0" ItemTapped="InboxList_ItemTapped">
+                    <ListView  x:Name="InboxList" HasUnevenRows="True" Margin="0,0,0,0" ItemTapped="InboxList_ItemTapped" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <Grid HeightRequest="70" x:Name="listItem" Margin="10,10,10,10" RowSpacing="0">
+                                <ViewCell >
+                                    <Grid HeightRequest="70" x:Name="listItem" Margin="10,10,10,10" RowSpacing="0" >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="70"></ColumnDefinition>
                                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -69,7 +70,7 @@
                                            Padding="0"
                                            BorderColor="Black"
                                            IsClippedToBounds="True">
-                                            <Image Source="{Binding image,Converter={StaticResource base64toImageSource}}" Aspect="AspectFill" ></Image>
+                                            <ffimageloading:CachedImage Source="{Binding image}" Aspect="AspectFill" ></ffimageloading:CachedImage>
                                         </Frame>
                                         <Label Margin="10,0,5,0" FontSize="Large" FontAttributes="Bold" Text="{Binding username}" Grid.Column="1" Grid.Row="0"/>
                                         <Label Margin="15,0,10,0" FontSize="Small" MaxLines="30" Text="{Binding message}" Grid.Column="1" Grid.Row="1"/>

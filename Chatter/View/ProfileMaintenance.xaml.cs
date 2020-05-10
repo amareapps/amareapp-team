@@ -33,6 +33,8 @@ namespace Chatter
         string number = "";
         MediaFile file;
         ApiConnector api = new ApiConnector();
+        private byte[] imageaRray;
+
         public ProfileMaintenance(string _number)
         {
             InitializeComponent();
@@ -108,7 +110,7 @@ namespace Chatter
                 content.Add(new StringContent(Application.Current.Properties["Name"].ToString()), "username");
                 content.Add(new StringContent(Application.Current.Properties["Gender"].ToString()), "gender");
                 content.Add(new StringContent(locationString), "location");
-                content.Add(new StringContent(imageString), "image");
+                content.Add(new ByteArrayContent(imageaRray), "image");
                 content.Add(new StringContent(number), "phone_number");
                 content.Add(new StringContent(birthdatePicker.Date.ToString()), "birthdate");
                 var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=insert", content);
@@ -188,8 +190,8 @@ namespace Chatter
                 return;
             }
             // Convert file to byte array and set the resulting bitmap to imageview
-            // byte[] imageArray = System.IO.File.ReadAllBytes(file.Path);
-            //imageaRray = imageArray;
+            byte[] imageArray = File.ReadAllBytes(file.Path.ToString());
+            imageaRray = imageArray;
             //Bitmap bitmaper = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
             chooseImageButton.Source = file.Path.ToString();
             //convertImagetoString(bitmaper);

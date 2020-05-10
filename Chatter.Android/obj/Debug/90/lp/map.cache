@@ -3,9 +3,12 @@ Chatter
 Com.Android.DeskClock
 Com.ViewPagerIndicator
 eliteKit.AndroidCore
+FFImageLoading.Forms.Platform
+FFImageLoading.Platform
 FormsViewGroup
 PanCardView.Droid
 Plugin.CurrentActivity
+Plugin.LocalNotifications
 Plugin.Media
 Plugin.Permissions
 Plugin.Toast

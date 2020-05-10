@@ -43,6 +43,7 @@ namespace Chatter
             if (emailEntry.Text == string.Empty || passEntry.Text == string.Empty)
             {
                 await DisplayAlert("Login Failed", "Please check credentials", "Okay");
+                activityIndicator.IsRunning = false;
                 return;
             }
             try
@@ -76,9 +77,11 @@ namespace Chatter
                 await retrieveGallery();
                 await retrievInbox();
                 await loadRecentMatches();
-                await Navigation.PushModalAsync(new MainPage());
-                await PopupNavigation.Instance.PopAsync(true);
+                App.Current.MainPage = new MainPage();
+                //await Navigation.PushModalAsync(new MainPage());
                 activityIndicator.IsRunning = false;
+                await PopupNavigation.Instance.PopAsync(true);
+
             }
             catch (Exception ex)
             {
@@ -259,6 +262,18 @@ namespace Chatter
             {
                 conn.CreateTable<RecentMatchesModel>();
                 conn.InsertOrReplace(model);
+            }
+        }
+
+        private void activityIndicator_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (activityIndicator.IsRunning)
+            {
+                loginButton.IsEnabled = false;
+            }
+            else
+            {
+                loginButton.IsEnabled = true;
             }
         }
     }

@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter.iOS\\Chatter.iOS.csproj": {}
+    "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.iOS\\Chatter.iOS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter.iOS\\Chatter.iOS.csproj": {
+    "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.iOS\\Chatter.iOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter.iOS\\Chatter.iOS.csproj",
+        "projectUniqueName": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.iOS\\Chatter.iOS.csproj",
         "projectName": "Chatter.iOS",
-        "projectPath": "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter.iOS\\Chatter.iOS.csproj",
-        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter.iOS\\obj\\",
+        "projectPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.iOS\\Chatter.iOS.csproj",
+        "packagesPath": "C:\\Users\\Kent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.iOS\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kent\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -32,8 +32,8 @@
         "frameworks": {
           "xamarinios10": {
             "projectReferences": {
-              "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter\\Chatter.csproj": {
-                "projectPath": "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter\\Chatter.csproj"
+              "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\Chatter.csproj": {
+                "projectPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\Chatter.csproj"
               }
             }
           }
@@ -54,6 +54,14 @@
               "target": "Package",
               "version": "[1.3.1, )"
             },
+            "Xamarin.FFImageLoading": {
+              "target": "Package",
+              "version": "[2.4.11.982, )"
+            },
+            "Xamarin.FFImageLoading.Forms": {
+              "target": "Package",
+              "version": "[2.4.11.982, )"
+            },
             "Xamarin.Forms": {
               "target": "Package",
               "version": "[4.4.0.991265, )"
@@ -73,20 +81,20 @@
         }
       }
     },
-    "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter\\Chatter.csproj": {
+    "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\Chatter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter\\Chatter.csproj",
+        "projectUniqueName": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\Chatter.csproj",
         "projectName": "Chatter",
-        "projectPath": "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter\\Chatter.csproj",
-        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chris\\Pictures\\amareapp-team\\Chatter\\obj\\",
+        "projectPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\Chatter.csproj",
+        "packagesPath": "C:\\Users\\Kent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kent\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -169,6 +177,10 @@
               "target": "Package",
               "version": "[4.0.1.5, )"
             },
+            "Xam.Plugins.Notifier": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
             "Xamarin.Auth": {
               "target": "Package",
               "version": "[1.7.0, )"
@@ -176,6 +188,14 @@
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.3.1, )"
+            },
+            "Xamarin.FFImageLoading": {
+              "target": "Package",
+              "version": "[2.4.11.982, )"
+            },
+            "Xamarin.FFImageLoading.Forms": {
+              "target": "Package",
+              "version": "[2.4.11.982, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
@@ -204,7 +224,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -14,6 +14,7 @@ using Xamd.ImageCarousel.Forms.Plugin.Droid;
 using Firebase.Database;
 using PanCardView.Droid;
 using CarouselView.FormsPlugin.Android;
+using FFImageLoading.Forms.Platform;
 
 namespace Chatter.Droid
 {
@@ -38,6 +39,8 @@ namespace Chatter.Droid
             RequestPermissions(permissionGroup, 0);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(enableFastRenderer: true);
+            CachedImageRenderer.InitImageViewHandler();
             CardsViewRenderer.Preserve();
             LoadApplication(new App());
         }

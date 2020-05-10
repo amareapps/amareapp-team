@@ -15,7 +15,12 @@ using System.Reactive.Linq;
 using System.Collections.ObjectModel;
 using Android.Hardware;
 using System.Timers;
+using System.Net.WebSockets;
 using Chatter.Classes;
+using Google.Protobuf.WellKnownTypes;
+using Chatter.Classes;
+using Android.OS;
+using System.Threading;
 
 namespace Chatter
 {
@@ -24,8 +29,11 @@ namespace Chatter
     {
         ObservableCollection<ChatModel> chatModels = new ObservableCollection<ChatModel>();
         private string Session_Id = "", Receiver_Id = "",Username = "",Image_Source="";
+        ApiConnector api = new ApiConnector();
         Base64toImageConverter converters = new Base64toImageConverter();
-        Timer timer;
+        string userLoggedIn = Application.Current.Properties["Id"].ToString().Replace("\"", "");
+        ClientWebSocket wsClient = new ClientWebSocket();
+        //System.Timers.Timer timer;
         public Messaging(string receiver_id,string session_id,string username,string imagesource)
         {
             Session_Id = session_id;
@@ -36,13 +44,53 @@ namespace Chatter
             NavigationPage.SetHasBackButton(this,false);
             userImage.Source = Image_Source;
         }
-        protected override void OnAppearing()
+
+        async Task ConnectToServerAsync()
         {
+            await wsClient.ConnectAsync(new Uri("ws://"+ApiConnection.Url+":8088"), CancellationToken.None);
+        }
+        protected async override void OnAppearing()
+        {
+            await loadData();
+            //scrollToBottom();
+            ChatList.ItemsSource = chatModels.OrderByDescending(entry => entry.datetime);
             lblReceiver.Text = Username;
-            timer = new Timer();
-            timer.Elapsed += Timer_Elapsed;
-            timer.Interval = 1000;
-            timer.Start();
+            //timer = new Timer();
+            //timer.Elapsed += Timer_Elapsed;
+            //timer.Interval = 1000;
+            //timer.Start();
+            await ConnectToServerAsync();
+            while (wsClient.State == WebSocketState.Open)
+            {
+                await ReadMessage();
+            }
+        }
+        private void scrollToBottom()
+        {
+            var target = chatModels[chatModels.Count - 1];
+            ChatList.ScrollTo(target, ScrollToPosition.End, true);
+        }
+        async Task ReadMessage()
+        {
+            WebSocketReceiveResult result;
+            var message = new ArraySegment<byte>(new byte[4096]);
+            string receivedMessage;
+            do
+            {
+                result = await wsClient.ReceiveAsync(message, CancellationToken.None);
+                var messageBytes = message.Skip(message.Offset).Take(result.Count).ToArray();
+                receivedMessage = Encoding.UTF8.GetString(messageBytes);
+                var resultModel = JsonConvert.DeserializeObject<ChatModel>(receivedMessage);
+                if ((resultModel.sender_id == userLoggedIn && resultModel.receiver_id == Receiver_Id) ||
+                    (resultModel.sender_id == Receiver_Id && resultModel.receiver_id == userLoggedIn))
+                {
+                    //await DisplayAlert("Anayre", userLoggedIn + resultModel.sender_id + resultModel.receiver_id, "Okay");
+                    resultModel.image = Image_Source;
+                    chatModels.Add(resultModel);
+                    ChatList.ItemsSource = chatModels.OrderByDescending(entry => entry.datetime);
+                }
+            }
+            while (!result.EndOfMessage);
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -52,12 +100,11 @@ namespace Chatter
         }
         protected override void OnDisappearing()
         {
-            timer.Stop();
+            //timer.Stop();
         }
         private async Task loadData()
         {
             await dataList();
-            scrolltoBottom();
         }
         private async Task dataList()
         {
@@ -80,16 +127,6 @@ namespace Chatter
                 {
                     if (!chatModels.Any(x => x.id == messageContent.id))
                     {
-                        if (messageContent.sender_id == Application.Current.Properties["Id"].ToString().Replace("\"", ""))
-                        {
-                            messageContent.position = "1";
-                            messageContent.spacingposition = "0";
-                        }
-                        else
-                        {
-                            messageContent.position = "0";
-                            messageContent.spacingposition = "1";
-                        }
                         messageContent.image = Image_Source;
                         //await DisplayAlert("Testing",messageContent.sender_id + " Position" + messageContent.position,"Okay");
                         chatModels.Add(messageContent);
@@ -115,6 +152,23 @@ namespace Chatter
 
         private async Task sendMessage()
         {
+            ChatModel modeler = new ChatModel {
+                id = "1",
+                sender_id = Application.Current.Properties["Id"].ToString().Replace("\"", ""),
+                sender_username = Application.Current.Properties["username"].ToString(),
+                session_id = Session_Id,
+                receiver_id = Receiver_Id,
+                message = messageEntry.Text,
+                datetime = DateTime.Now.ToString()
+            };
+            string val = JsonConvert.SerializeObject(modeler);
+            //await DisplayAlert("Test", val, "Okay");
+            var byteMessage = Encoding.UTF8.GetBytes(val);
+            var segmnet = new ArraySegment<byte>(byteMessage);
+            await wsClient.SendAsync(segmnet, WebSocketMessageType.Text, true, CancellationToken.None);
+            messageEntry.Text = string.Empty;
+            messageEntry.Unfocus();
+            /*
             var client = new HttpClient();
             var form = new MultipartFormDataContent();
             MultipartFormDataContent content = new MultipartFormDataContent();
@@ -130,21 +184,12 @@ namespace Chatter
             messageEntry.Text = string.Empty;
             messageEntry.Unfocus();
             scrolltoBottom();
-
+            */
         }
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
-        }
-
-        private void scrolltoBottom()
-        {
-            var messages = chatModels.ToArray();
-            if (messages.Length == 0)
-                return;
-            var target = messages[messages.Length - 1];
-            ChatList.ScrollTo(messages, ScrollToPosition.End, true);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Chatter.Model
         {
             get
             {
-                return "192.168.1.1";
+                return "192.168.1.7";
             }
         }
     }

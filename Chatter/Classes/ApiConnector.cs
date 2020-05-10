@@ -5,11 +5,14 @@ using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -17,9 +20,11 @@ namespace Chatter.Classes
 {
     public class ApiConnector
     {
+        static readonly HttpClient client = new HttpClient();
+        ClientWebSocket wsClient = new ClientWebSocket();
+        ChatModel chatModel = new ChatModel();
         public async Task<string> insertToPhoneRegister(string number,string code)
         {
-            var client = new HttpClient();
             var form = new MultipartFormDataContent();
             MultipartFormDataContent content = new MultipartFormDataContent();
             content.Add(new StringContent(number), "phone_number");
@@ -33,22 +38,19 @@ namespace Chatter.Classes
         {
             try
             {
-                using (var cl = new HttpClient())
+                string urlstring = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=checkCode&number=" + number;
+                var request = await client.GetAsync(urlstring);
+                request.EnsureSuccessStatusCode();
+                var response = await request.Content.ReadAsStringAsync();
+                if (response.Contains("Undefined"))
                 {
-                    string urlstring = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=checkCode&number=" + number;
-                    var request = await cl.GetAsync(urlstring);
-                    request.EnsureSuccessStatusCode();
-                    var response = await request.Content.ReadAsStringAsync();
-                    if (response.Contains("Undefined"))
-                    {
-                        return false;
-                    }
-                    var looper = JsonConvert.DeserializeObject<List<RegisterNumberModel>>(response).ToList();
-                    foreach (RegisterNumberModel model in looper)
-                    {
-                        if (model.code == code)
-                            return true;
-                    }
+                    return false;
+                }
+                var looper = JsonConvert.DeserializeObject<List<RegisterNumberModel>>(response).ToList();
+                foreach (RegisterNumberModel model in looper)
+                {
+                    if (model.code == code)
+                        return true;
                 }
             }
             catch (Exception ex)
@@ -62,25 +64,22 @@ namespace Chatter.Classes
             try
             {
                 UserModel user = new UserModel();
-                using (var cl = new HttpClient())
+                string urlstring = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_phonenumber&number=" + number;
+                var request = await client.GetAsync(urlstring);
+                request.EnsureSuccessStatusCode();
+                var response = await request.Content.ReadAsStringAsync();
+                if (response.Contains("Undefined"))
                 {
-                    string urlstring = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_phonenumber&number=" + number;
-                    var request = await cl.GetAsync(urlstring);
-                    request.EnsureSuccessStatusCode();
-                    var response = await request.Content.ReadAsStringAsync();
-                    if (response.Contains("Undefined"))
-                    {
-                        return null;
-                    }
-                    var looper = JsonConvert.DeserializeObject<List<UserModel>>(response).ToList();
-                    foreach (UserModel modeler in looper)
-                    {
-                        var webClient = new WebClient();
-                        byte[] imageBytes = webClient.DownloadData(modeler.image);
-                        string base64Image = Convert.ToBase64String(imageBytes);
-                        modeler.image = base64Image;
-                        user = modeler;
-                    }
+                    return null;
+                }
+                var looper = JsonConvert.DeserializeObject<List<UserModel>>(response).ToList();
+                foreach (UserModel modeler in looper)
+                {
+                    var webClient = new WebClient();
+                    byte[] imageBytes = webClient.DownloadData(modeler.image);
+                    string base64Image = Convert.ToBase64String(imageBytes);
+                    modeler.image = base64Image;
+                    user = modeler;
                 }
                 await saveToSqlite(user);
                 await retrieveSearchReference();
@@ -118,24 +117,21 @@ namespace Chatter.Classes
         }
         public async Task retrieveSearchReference()
         {
-            using (var cl = new HttpClient())
+            string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_search_reference&id='" + Application.Current.Properties["Id"].ToString() + "'";
+            var request = await client.GetAsync(urlString);
+            request.EnsureSuccessStatusCode();
+            var response = await request.Content.ReadAsStringAsync();
+            //await DisplayAlert("Erro!", response.ToString(), "Okay");
+            if (response.ToString().Contains("Undefined"))
             {
-                string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_search_reference&id='" + Application.Current.Properties["Id"].ToString() + "'";
-                var request = await cl.GetAsync(urlString);
-                request.EnsureSuccessStatusCode();
-                var response = await request.Content.ReadAsStringAsync();
-                //await DisplayAlert("Erro!", response.ToString(), "Okay");
-                if (response.ToString().Contains("Undefined"))
-                {
-                    return;
-                }
-                var looper = JsonConvert.DeserializeObject<List<SearchRefenceModel>>(response);
-                foreach (SearchRefenceModel model in looper)
-                {
+                return;
+            }
+            var looper = JsonConvert.DeserializeObject<List<SearchRefenceModel>>(response);
+            foreach (SearchRefenceModel model in looper)
+            {
 
-                    await saveSearchToSqlite(model);
-                    break;
-                }
+                await saveSearchToSqlite(model);
+                break;
             }
         }
 
@@ -152,23 +148,20 @@ namespace Chatter.Classes
         }
         public async Task retrieveGallery()
         {
-            using (var cl = new HttpClient())
+            string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_gallery&user_id='" + Application.Current.Properties["Id"].ToString() + "'";
+            var request = await client.GetAsync(urlString);
+            request.EnsureSuccessStatusCode();
+            var response = await request.Content.ReadAsStringAsync();
+            //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
+            if (response.ToString().Contains("Undefined"))
             {
-                string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_gallery&user_id='" + Application.Current.Properties["Id"].ToString() + "'";
-                var request = await cl.GetAsync(urlString);
-                request.EnsureSuccessStatusCode();
-                var response = await request.Content.ReadAsStringAsync();
-                //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
-                if (response.ToString().Contains("Undefined"))
-                {
-                    return;
-                }
-                var modifString = response.Replace(@"\", "");
-                var looper = JsonConvert.DeserializeObject<List<GalleryModel>>(modifString);
-                foreach (GalleryModel model in looper)
-                {
-                    await saveGalleryToSqlite(model);
-                }
+                return;
+            }
+            var modifString = response.Replace(@"\", "");
+            var looper = JsonConvert.DeserializeObject<List<GalleryModel>>(modifString);
+            foreach (GalleryModel model in looper)
+            {
+                await saveGalleryToSqlite(model);
             }
         }
         public async Task retrievInbox()
@@ -176,7 +169,6 @@ namespace Chatter.Classes
             try
             {
                 //Get the data for inbox list
-                var client = new HttpClient();
                 var form = new MultipartFormDataContent();
                 string strurl = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_inbox&id='" + Application.Current.Properties["Id"].ToString() + "'";
                 var request = await client.GetAsync(strurl);
@@ -226,7 +218,6 @@ namespace Chatter.Classes
             try
             {
                 //Get the data for inbox list
-                var client = new HttpClient();
                 var form = new MultipartFormDataContent();
                 string strurl = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_recentmatches&id='" + Application.Current.Properties["Id"].ToString() + "'";
                 var request = await client.GetAsync(strurl);
@@ -271,26 +262,23 @@ namespace Chatter.Classes
         {
             try
             {
-                using (var cl = new HttpClient())
+                var settings = new JsonSerializerSettings
                 {
-                    var settings = new JsonSerializerSettings
-                    {
-                        NullValueHandling = NullValueHandling.Ignore,
-                        MissingMemberHandling = MissingMemberHandling.Ignore
-                    };
-                    string urlstring = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_single&id=" + id;
-                    var request = await cl.GetAsync(urlstring);
-                    request.EnsureSuccessStatusCode();
-                    var response = await request.Content.ReadAsStringAsync();
-                    response = response.Replace(@"\","");
-                    //response = response.Replace("null","\"\"");
-                    if (response.Contains("Undefined"))
-                    {
-                        return null;
-                    }
-                    var looper = JsonConvert.DeserializeObject<UserModel>(response, settings);
-                    return looper;
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                string urlstring = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_single&id=" + id;
+                var request = await client.GetAsync(urlstring);
+                request.EnsureSuccessStatusCode();
+                var response = await request.Content.ReadAsStringAsync();
+                response = response.Replace(@"\","");
+                //response = response.Replace("null","\"\"");
+                if (response.Contains("Undefined"))
+                {
+                    return null;
                 }
+                var looper = JsonConvert.DeserializeObject<UserModel>(response, settings);
+                return looper;
             }
             catch (Exception)
             {
@@ -301,21 +289,18 @@ namespace Chatter.Classes
         {
             try
             {
-                using (var cl = new HttpClient())
+                string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_gallery&user_id=" + id + "";
+                var request = await client.GetAsync(urlString);
+                request.EnsureSuccessStatusCode();
+                var response = await request.Content.ReadAsStringAsync();
+                //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
+                if (response.ToString().Contains("Undefined"))
                 {
-                    string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_gallery&user_id=" + id + "";
-                    var request = await cl.GetAsync(urlString);
-                    request.EnsureSuccessStatusCode();
-                    var response = await request.Content.ReadAsStringAsync();
-                    //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
-                    if (response.ToString().Contains("Undefined"))
-                    {
-                        return null;
-                    }
-                    var modifString = response.Replace(@"\", "");
-                    var looper = JsonConvert.DeserializeObject<List<GalleryModel>>(modifString).ToList();
-                    return looper;
+                    return null;
                 }
+                var modifString = response.Replace(@"\", "");
+                var looper = JsonConvert.DeserializeObject<List<GalleryModel>>(modifString).ToList();
+                return looper;
             }
             catch (Exception ex)
             {
@@ -324,7 +309,6 @@ namespace Chatter.Classes
         }
         public async Task saveToDislikedUser(string user_id,string usertodislike)
         {
-            var client = new HttpClient();
             var form = new MultipartFormDataContent();
             MultipartFormDataContent content = new MultipartFormDataContent();
             content.Add(new StringContent(user_id), "user_id");
@@ -335,7 +319,6 @@ namespace Chatter.Classes
         }
         public async Task updateProfilePicture(string user_id,string image)
         {
-            var client = new HttpClient();
             var form = new MultipartFormDataContent();
             MultipartFormDataContent content = new MultipartFormDataContent();
             content.Add(new StringContent(user_id), "id");
@@ -348,22 +331,19 @@ namespace Chatter.Classes
         {
                 try
                 {
-                    using (var cl = new HttpClient())
+                    string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_single&id=" + id + "";
+                    var request = await client.GetAsync(urlString);
+                    request.EnsureSuccessStatusCode();
+                    var response = await request.Content.ReadAsStringAsync();
+                    //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
+                    if (response.ToString().Contains("Undefined"))
                     {
-                        string urlString = "http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_single&id=" + id + "";
-                        var request = await cl.GetAsync(urlString);
-                        request.EnsureSuccessStatusCode();
-                        var response = await request.Content.ReadAsStringAsync();
-                        //await DisplayAlert("Error! Login_Input", response.ToString(), "Okay");
-                        if (response.ToString().Contains("Undefined"))
-                        {
-                            return;
-                        }
-                        var modifString = response.Replace(@"\", "");
-                        var looper = JsonConvert.DeserializeObject<UserModel>(modifString);
-                        looper.image = converttoBase64(looper.image);
-                        syncUsertoSqlite(looper);
+                        return;
                     }
+                    var modifString = response.Replace(@"\", "");
+                    var looper = JsonConvert.DeserializeObject<UserModel>(modifString);
+                    looper.image = converttoBase64(looper.image);
+                    syncUsertoSqlite(looper);
                 }
                 catch (Exception ex)
                 {
@@ -394,6 +374,43 @@ namespace Chatter.Classes
                 return str;
             }
         }
-
+        public bool ConnectedToServerAsync()
+        {
+                while (wsClient.State == WebSocketState.Open)
+                {
+                    return true;
+                }
+                return false;
+        }
+        public async Task connectToServer()
+        {
+            await wsClient.ConnectAsync(new Uri("ws://192.168.1.7:8088"), CancellationToken.None);
+        }
+        public async Task<string> ReadMessage()
+        {
+            WebSocketReceiveResult result;
+            var message = new ArraySegment<byte>(new byte[4096]);
+            string receivedMessage;
+            do
+            {
+                result = await wsClient.ReceiveAsync(message, CancellationToken.None);
+                var messageBytes = message.Skip(message.Offset).Take(result.Count).ToArray();
+                receivedMessage = System.Text.Encoding.UTF8.GetString(messageBytes);
+                // DisplayAlert("Anayre",receivedMessage,"Okay");
+                //ChatModel messagess = JsonConvert.DeserializeObject<ChatModel>(receivedMessage);
+                //if (messagess.receiver_id != Application.Current.Properties["Id"].ToString() || messagess.sender_id != Application.Current.Properties["Id"].ToString())
+                //    continue;
+               // chatModel = messagess;
+            }
+            while (!result.EndOfMessage);
+            return receivedMessage;
+        }
+        public async Task sendMessagetoSocket(ChatModel model)
+        {
+            string val = JsonConvert.SerializeObject(model);
+            var byteMessage = System.Text.Encoding.UTF8.GetBytes(val);
+            var segmnet = new ArraySegment<byte>(byteMessage);
+            await wsClient.SendAsync(segmnet, WebSocketMessageType.Text, true, CancellationToken.None);
+        }
     }
 }

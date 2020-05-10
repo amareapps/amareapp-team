@@ -15,8 +15,8 @@ namespace Chatter.Classes
             await CrossMedia.Current.Initialize();
             file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
-                CompressionQuality = 10,
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                CompressionQuality = 40,
                 Name = "myimage.jpg",
                 Directory = "sample"
             });
@@ -43,8 +43,8 @@ namespace Chatter.Classes
 
             file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
             {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
-                CompressionQuality = 10
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                CompressionQuality = 40
             });
             if (file == null)
             {
