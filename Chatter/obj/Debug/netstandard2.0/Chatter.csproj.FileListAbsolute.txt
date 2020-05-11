@@ -59,12 +59,11 @@ C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Profile
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Settings.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\SocialMediaLogin.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\ViewProfile.xaml.g.cs
+C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.csproj.CoreCompileInputs.cache
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.AssemblyInfoInputs.cache
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.AssemblyInfo.cs
+C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.csproj.CopyComplete
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.dll
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\ref\Chatter.dll
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.pdb
-C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.csprojAssemblyReference.cache
-C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\Chatter.csproj.CoreCompileInputs.cache
-C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\XamlC.stamp

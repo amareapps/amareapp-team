@@ -38,7 +38,6 @@ namespace Chatter
         private async void loginButton_Clicked(object sender, EventArgs e)
         {
             activityIndicator.IsRunning = true;
-            var context = Android.App.Application.Context;
             string sample = emailEntry.Text + "," + passEntry.Text;
             if (emailEntry.Text == string.Empty || passEntry.Text == string.Empty)
             {
@@ -50,6 +49,9 @@ namespace Chatter
             {
                 using (var cl = new HttpClient())
                 {
+                    JsonSerializerSettings settings = new JsonSerializerSettings();
+                    settings.NullValueHandling = NullValueHandling.Ignore;
+                    settings.DefaultValueHandling = DefaultValueHandling.Ignore;
                     var request = await cl.GetAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=fetch_userexists&email='" + sample + "'");
                     request.EnsureSuccessStatusCode();
                     var response = await request.Content.ReadAsStringAsync();
@@ -60,7 +62,7 @@ namespace Chatter
                         return;
                     }
                     response = response.Replace(@"\", "");
-                    var looper = JsonConvert.DeserializeObject<List<UserModel>>(response); 
+                    var looper = JsonConvert.DeserializeObject<List<UserModel>>(response, settings); 
                     foreach (UserModel model in looper)
                     {
                         var webClient = new WebClient();
@@ -203,7 +205,7 @@ namespace Chatter
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Error", ex.ToString(), "Okay");
+                    //await DisplayAlert("Error", ex.ToString(), "Okay");
                 }
         }
         private async Task saveInbox(InboxModel model)

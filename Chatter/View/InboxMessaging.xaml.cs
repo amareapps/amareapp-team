@@ -92,7 +92,7 @@ namespace Chatter
         }
         protected override void OnDisappearing()
         {
-            Navigation.PopModalAsync();
+            //Navigation.PopModalAsync();
             //timer.Stop();
         }
         private async Task loadData()

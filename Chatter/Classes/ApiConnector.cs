@@ -228,17 +228,17 @@ namespace Chatter.Classes
                 var looper = JsonConvert.DeserializeObject<List<RecentMatchesModel>>(response.ToString());
                 foreach (RecentMatchesModel matches in looper)
                 {
-                    var webClient = new WebClient();
-                    byte[] imageBytes = webClient.DownloadData(matches.image);
-                    Bitmap bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                    Bitmap resizedImage = Bitmap.CreateScaledBitmap(bitmap, 50, 50, false);
-                    using (var stream = new MemoryStream())
-                    {
-                        resizedImage.Compress(Bitmap.CompressFormat.Png, 0, stream);
-                        var bytes = stream.ToArray();
-                        var str = Convert.ToBase64String(bytes);
-                        matches.image = str;
-                    }
+                    //var webClient = new WebClient();
+                    //byte[] imageBytes = webClient.DownloadData(matches.image);
+                    //Bitmap bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                    //Bitmap resizedImage = Bitmap.CreateScaledBitmap(bitmap, 50, 50, false);
+                    //using (var stream = new MemoryStream())
+                    //{
+                    //    resizedImage.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                     //   var bytes = stream.ToArray();
+                     //   var str = Convert.ToBase64String(bytes);
+                     //   matches.image = str;
+                    //}
 
                     saveRecentToLocalDb(matches);
                 }

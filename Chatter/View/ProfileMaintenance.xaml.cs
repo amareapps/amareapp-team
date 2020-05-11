@@ -110,7 +110,7 @@ namespace Chatter
                 content.Add(new StringContent(Application.Current.Properties["Name"].ToString()), "username");
                 content.Add(new StringContent(Application.Current.Properties["Gender"].ToString()), "gender");
                 content.Add(new StringContent(locationString), "location");
-                content.Add(new ByteArrayContent(imageaRray), "image");
+                content.Add(new StringContent(imageString), "image");
                 content.Add(new StringContent(number), "phone_number");
                 content.Add(new StringContent(birthdatePicker.Date.ToString()), "birthdate");
                 var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=insert", content);
@@ -180,7 +180,7 @@ namespace Chatter
 
             file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
                 CompressionQuality = 50,
                 Name = "myimage.jpg",
                 Directory = "sample"
@@ -190,8 +190,8 @@ namespace Chatter
                 return;
             }
             // Convert file to byte array and set the resulting bitmap to imageview
-            byte[] imageArray = File.ReadAllBytes(file.Path.ToString());
-            imageaRray = imageArray;
+            //byte[] imageArray = File.ReadAllBytes(file.Path.ToString());
+           // imageaRray = imageArray;
             //Bitmap bitmaper = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
             chooseImageButton.Source = file.Path.ToString();
             //convertImagetoString(bitmaper);
@@ -208,8 +208,8 @@ namespace Chatter
 
             file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
             {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
-                CompressionQuality = 50
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Full,
+                CompressionQuality = 60
             });
             if (file == null)
             {

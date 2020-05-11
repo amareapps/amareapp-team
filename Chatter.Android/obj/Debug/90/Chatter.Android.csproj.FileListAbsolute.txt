@@ -858,6 +858,7 @@ C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\res\drawable\ama
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\res\drawable\or.png
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\res\drawable\add_pic.png
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\res\drawable\earth.png
+C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\res\raw\swiftly.mp3
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\uploadflags.txt
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\resolvedassemblies.hash
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\android\assets\BouncyCastle.Crypto.dll
@@ -1486,4 +1487,3 @@ C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\stamp\_ConvertRe
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\Kent\source\repos\Chatter\Chatter.Android\obj\Debug\90\res\raw\swiftly.mp3
