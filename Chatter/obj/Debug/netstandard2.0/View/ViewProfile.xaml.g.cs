@@ -14,7 +14,7 @@ namespace Chatter.View {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("View\\ViewProfile.xaml")]
-    public partial class ViewProfile : global::Rg.Plugins.Popup.Pages.PopupPage {
+    public partial class ViewProfile : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.CarouselView galleryView;
