@@ -38,9 +38,13 @@ namespace Chatter
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (autoSlider.SelectedIndex == 2)
+                {
                     autoSlider.SelectedIndex = 0;
+                }
                 else
+                {
                     autoSlider.SelectedIndex += 1;
+                }
             });
         }
 
@@ -121,7 +125,7 @@ namespace Chatter
                     {
                         byte[] Base64Stream = Convert.FromBase64String(model.image);
                         ProfileImage.Source = ImageSource.FromStream(() => new MemoryStream(Base64Stream));
-                        nameLabel.Text = model.username;
+                        //nameLabel.Text = model.username;
                         Application.Current.Properties["Id"] = "\"" + model.id + "\"";
                         //DisplayAlert("Get", Application.Current.Properties["Id"].ToString(), "Okay");
                         Application.Current.Properties["username"] = model.username;

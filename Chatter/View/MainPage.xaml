@@ -4,11 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-            xmlns:Local="clr-namespace:Chatter"
-             x:Class="Chatter.MainPage" BarBackgroundColor="Transparent" SelectedTabColor="Red" BarTextColor="Red" Title="Amare">
+             xmlns:Local="clr-namespace:Chatter"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             android:TabbedPage.OffscreenPageLimit="2"
+             android:TabbedPage.IsSwipePagingEnabled="True"
+             android:TabbedPage.IsSmoothScrollEnabled="True"
+             x:Class="Chatter.MainPage" BarBackgroundColor="#98000b" UnselectedTabColor="White" SelectedTabColor="Gray">
     <TabbedPage.Children>
-        <Local:Profile Title="Profile" IconImageSource="profile.png"></Local:Profile>
-        <Local:Discover Title="Discover" IconImageSource="discover.png"></Local:Discover>
-        <Local:InboxMessaging Title="Messaging" IconImageSource="message.png"></Local:InboxMessaging>
+        <Local:Profile IconImageSource="profile.png"></Local:Profile>
+        <Local:Discover IconImageSource="discover.png"></Local:Discover>
+        <Local:InboxMessaging IconImageSource="message.png"></Local:InboxMessaging>
     </TabbedPage.Children>
 </TabbedPage>

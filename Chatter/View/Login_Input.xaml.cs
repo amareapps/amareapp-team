@@ -41,7 +41,7 @@ namespace Chatter
             string sample = emailEntry.Text + "," + passEntry.Text;
             if (emailEntry.Text == string.Empty || passEntry.Text == string.Empty)
             {
-                await DisplayAlert("Login Failed", "Please check credentials", "Okay");
+                await DisplayAlert("Login Failed", "Please enter your registered email address and password.", "Okay");
                 activityIndicator.IsRunning = false;
                 return;
             }
@@ -57,7 +57,7 @@ namespace Chatter
                     var response = await request.Content.ReadAsStringAsync();
                     if (response.ToString().Contains("Undefined")) 
                     {
-                        await DisplayAlert("Login Failed", "Please check credentials", "Okay");
+                        await DisplayAlert("Login Failed", "Please enter the correct registered email address and/or password.", "Okay");
                         activityIndicator.IsRunning = false;
                         return;
                     }
@@ -72,7 +72,7 @@ namespace Chatter
                         userLogged = model;
                     }
                     Application.Current.Properties["Id"] = "\""+ userLogged.id + "\"";
-                    CrossToastPopUp.Current.ShowToastMessage("Welcome " + userLogged.username);
+                    CrossToastPopUp.Current.ShowToastMessage("Welcome to Amare, " + userLogged.username + "!");
                 }
                 await retrieveSearchReference();
                 await saveToSqlite();
