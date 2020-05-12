@@ -147,6 +147,7 @@ namespace Chatter.View
                         if (sample.Source.ToString().Contains("dashed_border.png"))
                         {
                             sample.Source = imagePath.Path.ToString();
+                            sample.Aspect = Aspect.AspectFill;
                             var sample2 = await fireStorage.StoreImages(imagePath.GetStream(), (Application.Current.Properties["Id"].ToString().Replace("\"", "") + "_" + counter.ToString()));
                             imageUrl = sample2;
                             await saveToGallery();
@@ -212,6 +213,7 @@ namespace Chatter.View
                             {
                                 if(!model2.Any(x=> x.id == model.id))
                                 {
+                                    sample.Aspect = Aspect.AspectFill;
                                     sample.Source = model.image;
                                     model2.Add(model);
                                     break;

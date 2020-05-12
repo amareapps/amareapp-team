@@ -34,31 +34,31 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Frame Grid.Row="0" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="0" Grid.Column="1" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="0" Grid.Column="2" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="1" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="1" Grid.Column="1" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
                             <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="1" Grid.Column="2" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="2" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="2" Grid.Column="1" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                         <Frame Grid.Row="2" Grid.Column="2" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
-                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
                         </Frame>
                     </Grid>
                     <Button Margin="20" CornerRadius="30" TextColor="#fffcf3" FontAttributes="Bold" FontSize="Medium" Text="Add media" BackgroundColor="#98000b" Clicked="ImageButton_Clicked"></Button>

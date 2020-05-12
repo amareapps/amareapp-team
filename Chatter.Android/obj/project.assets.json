@@ -6197,24 +6197,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\chris\\.nuget\\packages\\": {},
+    "C:\\Users\\Kent\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chris\\Videos\\amarepinakapinakanew\\amareapp-team\\Chatter.Android\\Chatter.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.Android\\Chatter.Android.csproj",
       "projectName": "Chatter.Android",
-      "projectPath": "C:\\Users\\chris\\Videos\\amarepinakapinakanew\\amareapp-team\\Chatter.Android\\Chatter.Android.csproj",
-      "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chris\\Videos\\amarepinakapinakanew\\amareapp-team\\Chatter.Android\\obj\\",
+      "projectPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.Android\\Chatter.Android.csproj",
+      "packagesPath": "C:\\Users\\Kent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kent\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -6228,8 +6228,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\chris\\Videos\\amarepinakapinakanew\\amareapp-team\\Chatter\\Chatter.csproj": {
-              "projectPath": "C:\\Users\\chris\\Videos\\amarepinakapinakanew\\amareapp-team\\Chatter\\Chatter.csproj"
+            "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\Chatter.csproj": {
+              "projectPath": "C:\\Users\\Kent\\source\\repos\\Chatter\\Chatter\\Chatter.csproj"
             }
           }
         }
