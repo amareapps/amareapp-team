@@ -11,6 +11,6 @@
                             <Label  Text="{Binding message}"
                                   TextColor="Black" Padding="10" HorizontalTextAlignment="Start" />
                 </Frame>
-                <Label Text="{Binding datetime}" FontSize="Micro" HorizontalOptions="End"></Label>
+        <Label Text="{Binding datetime}" IsVisible="{Binding isVisible}" FontSize="Micro" HorizontalOptions="End"></Label>
     </FlexLayout>
 </ViewCell>

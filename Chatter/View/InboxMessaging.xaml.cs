@@ -130,7 +130,7 @@ namespace Chatter
                     //    var str = Convert.ToBase64String(bytes);
                    //     messageContent.image = str;
                     //}
-                    if (!inboxModels.Any(x => x.session_id == messageContent.session_id))
+                    //if (!inboxModels.Any(x => x.session_id == messageContent.session_id))
                         saveToLocalDb(messageContent);
                    //     inboxModels.Add(messageContent);
                    // }
@@ -162,8 +162,8 @@ namespace Chatter
                 if (response.ToString().Contains("Undefined"))
                     return;
                 var looper = JsonConvert.DeserializeObject<List<RecentMatchesModel>>(response.ToString());
-                if (looper.Count == matchesModel.Count)
-                    return;
+   //             if (looper.Count == matchesModel.Count)
+   //                 return;
                 foreach (RecentMatchesModel matches in looper)
                 {
                     //var webClient = new WebClient();
@@ -220,12 +220,10 @@ namespace Chatter
                 {
                     conn.CreateTable<InboxModel>();
                     var table = conn.Table<InboxModel>().ToList();
+                    inboxModels.Clear();
                     foreach (InboxModel model in table)
                     {
-                        if (!inboxModels.Any(x => x.session_id == model.session_id))
-                        {
-                            inboxModels.Add(model);
-                        }
+                        inboxModels.Add(model);
                     }
                 }
                 InboxList.ItemsSource = inboxModels;

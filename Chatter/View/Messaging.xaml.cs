@@ -21,6 +21,7 @@ using Google.Protobuf.WellKnownTypes;
 using Chatter.Classes;
 using Android.OS;
 using System.Threading;
+using Android.Media;
 
 namespace Chatter
 {
@@ -79,7 +80,7 @@ namespace Chatter
             {
                 result = await wsClient.ReceiveAsync(message, CancellationToken.None);
                 var messageBytes = message.Skip(message.Offset).Take(result.Count).ToArray();
-                receivedMessage = Encoding.UTF8.GetString(messageBytes);
+                receivedMessage = System.Text.Encoding.UTF8.GetString(messageBytes);
                 var resultModel = JsonConvert.DeserializeObject<ChatModel>(receivedMessage);
                 if ((resultModel.sender_id == userLoggedIn && resultModel.receiver_id == Receiver_Id) ||
                     (resultModel.sender_id == Receiver_Id && resultModel.receiver_id == userLoggedIn))
@@ -145,6 +146,19 @@ namespace Chatter
             await sendMessage();
         }
 
+        private void ChatList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ChatModel model = e.SelectedItem as ChatModel;
+            if (model.isVisible == "false")
+                model.isVisible = "true";
+            else
+                model.isVisible = "false";
+
+            var oldItem = chatModels.FirstOrDefault(i => i.id == model.id);
+            var oldIndex = chatModels.IndexOf(oldItem);
+            chatModels[oldIndex] = model;
+            //chatModels[e.SelectedItemIndex].isVisible = "true";
+        }
         private void sendimageButton_Clicked(object sender, EventArgs e)
         {
 
@@ -163,7 +177,7 @@ namespace Chatter
             };
             string val = JsonConvert.SerializeObject(modeler);
             //await DisplayAlert("Test", val, "Okay");
-            var byteMessage = Encoding.UTF8.GetBytes(val);
+            var byteMessage = System.Text.Encoding.UTF8.GetBytes(val);
             var segmnet = new ArraySegment<byte>(byteMessage);
             await wsClient.SendAsync(segmnet, WebSocketMessageType.Text, true, CancellationToken.None);
             messageEntry.Text = string.Empty;

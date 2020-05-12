@@ -25,7 +25,7 @@
                 <ffimageloading:CachedImage x:Name="userImage" Source="{Binding image}" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="0"></ffimageloading:CachedImage>
                 <Label x:Name="lblReceiver" VerticalOptions="Center" FontSize="Medium" BackgroundColor="Transparent" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3"/>
             </Grid>
-            <ListView Grid.Row="1" Grid.ColumnSpan="5"  x:Name="ChatList"
+            <ListView Grid.Row="1" Grid.ColumnSpan="5"  x:Name="ChatList" ItemSelected="ChatList_ItemSelected"
                  ItemTemplate="{StaticResource MessageTemplateSelector}" FlowDirection="RightToLeft"
                  Rotation="180"
                  Margin="0" 
