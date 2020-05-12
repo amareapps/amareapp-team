@@ -4,89 +4,91 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Chatter.View.EditProfile" BackgroundColor="WhiteSmoke">
+             x:Class="Chatter.View.EditProfile" BackgroundColor="#fffcf3">
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout Spacing="10">
-             <Picker x:Name="imagePicker" IsVisible="False"  SelectedIndexChanged="ImagePicker_SelectedIndexChanged" Title="Select Image">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Take Photo</x:String>
-                            <x:String>Choose from Gallery</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
-            <Grid HeightRequest="50" Margin="0,0,0,20">
-                <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
-                <Button BackgroundColor="Transparent" ImageSource="backButton.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" x:Name="backButton" Clicked="backButton_Clicked"/>
+        <StackLayout>
+            <Grid HeightRequest="50" Margin="0,0,0,10">
+                <BoxView BackgroundColor="#fffcf3" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
+                <Button BackgroundColor="Transparent" ImageSource="backbuttonred.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" x:Name="backButton" Clicked="backButton_Clicked"/>
                 <Label VerticalOptions="Center" FontSize="Large" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="Settings"/>
             </Grid>
-            <Grid Margin="5" ColumnSpacing="10" RowSpacing="10" x:Name="imageGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="170"></RowDefinition>
-                    <RowDefinition Height="170"></RowDefinition>
-                    <RowDefinition Height="170"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                    <Frame Grid.Row="0" Grid.Column="0" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="0" Grid.Column="1" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="0" Grid.Column="2" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="1" Grid.Column="0" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="1" Grid.Column="1" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="1" Grid.Column="2" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="2" Grid.Column="0" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="2" Grid.Column="1" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                    <Frame Grid.Row="2" Grid.Column="2" CornerRadius="15" IsClippedToBounds="True" Margin="0" Padding="0">
-                        <ImageButton Aspect="Fill" BackgroundColor="#f5fcff" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
-                    </Frame>
-                </Grid>
-            <Button Margin="20" CornerRadius="30" TextColor="White" FontAttributes="Bold" FontSize="Medium" Text="Add media" BackgroundColor="LightPink" Clicked="ImageButton_Clicked"></Button>
-            <Label x:Name="lblAbout" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
-            <StackLayout BackgroundColor="White" Padding="10">
-                    <Entry x:Name="aboutEntry" Placeholder="About you" Text="{Binding about}"></Entry>
-            </StackLayout>
-                <Label Text="Job title" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
-            <StackLayout BackgroundColor="White" Padding="10">
-                    <Editor x:Name="jobEntry" Placeholder="Add job title" Text="{Binding job_title}"></Editor>
-            </StackLayout>
-                <Label Text="Company" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
-            <StackLayout BackgroundColor="White" Padding="10">
-                    <Entry x:Name="companyEntry" Placeholder="Add company" Text="{Binding company}"></Entry>
-            </StackLayout>
-                <Label Text="School" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
-            <StackLayout BackgroundColor="White" Padding="10">
-                    <Entry x:Name="schoolEntry" Placeholder="Add school" Text="{Binding school}"></Entry>
-            </StackLayout>
-            <Label Text="Control Your Profile" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
-            <StackLayout BackgroundColor="White" Padding="10" Margin="0,0,0,20">
-                    <Grid>
-                        <Label Text="Don't Show My Age" Grid.Column="0" FontSize="Medium" Grid.Row="0"></Label>
-                        <Switch Grid.Column="1" Grid.Row="0" IsToggled="{Binding show_age}" x:Name="ageSwitch"></Switch>
-                        <Label Text="Make My Distance Invisible" Grid.Column="0" FontSize="Medium" Grid.Row="1"></Label>
-                        <Switch Grid.Column="1" Grid.Row="1" IsToggled="{Binding show_distance}" x:Name="distanceSwitch"></Switch>
+            <ScrollView>
+                <StackLayout Spacing="10">
+                    <Picker x:Name="imagePicker" IsVisible="False"  SelectedIndexChanged="ImagePicker_SelectedIndexChanged" Title="Select Image">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Take Photo</x:String>
+                                <x:String>Choose from Gallery</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Grid Margin="5" ColumnSpacing="10" RowSpacing="10" x:Name="imageGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="170"></RowDefinition>
+                            <RowDefinition Height="170"></RowDefinition>
+                            <RowDefinition Height="170"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Row="0" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="0" Grid.Column="1" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="0" Grid.Column="2" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="1" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="1" Grid.Column="1" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="Fill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="1" Grid.Column="2" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="2" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="2" Grid.Column="1" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
+                        <Frame Grid.Row="2" Grid.Column="2" CornerRadius="10" IsClippedToBounds="True" Margin="0" Padding="0">
+                            <ImageButton Aspect="AspectFill" BackgroundColor="#fffcf3" Source="dashed_border.png" Clicked="ImageButton_Clicked"></ImageButton>
+                        </Frame>
                     </Grid>
-            </StackLayout>
-            </StackLayout>
-        </ScrollView>
+                    <Button Margin="20" CornerRadius="30" TextColor="#fffcf3" FontAttributes="Bold" FontSize="Medium" Text="Add media" BackgroundColor="#98000b" Clicked="ImageButton_Clicked"></Button>
+                    <Label x:Name="lblAbout" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
+                    <StackLayout Padding="20,10,20,10">
+                        <Entry x:Name="aboutEntry" Placeholder="About you" Text="{Binding about}"></Entry>
+                    </StackLayout>
+                    <Label Text="Job title" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
+                    <StackLayout Padding="20,10,20,10">
+                        <Editor x:Name="jobEntry" Placeholder="Add job title" Text="{Binding job_title}"></Editor>
+                    </StackLayout>
+                    <Label Text="Company" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
+                    <StackLayout Padding="20,10,20,10">
+                        <Entry x:Name="companyEntry" Placeholder="Add company" Text="{Binding company}"></Entry>
+                    </StackLayout>
+                    <Label Text="School" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
+                    <StackLayout Padding="20,10,20,10">
+                        <Entry x:Name="schoolEntry" Placeholder="Add school" Text="{Binding school}"></Entry>
+                    </StackLayout>
+                    <Label Text="Control Your Profile" Margin="20,0,0,0" FontSize="Medium" FontAttributes="Bold"></Label>
+                    <StackLayout Padding="20,10,20,10" Margin="0,0,0,20">
+                        <Grid>
+                            <Label Text="Don't show my age" Grid.Column="0" FontSize="Medium" Grid.Row="0"></Label>
+                            <Switch Grid.Column="1" Grid.Row="0" IsToggled="{Binding show_age}" x:Name="ageSwitch" ThumbColor="#98000b" ></Switch>
+                            <Label Text="Don't show my distance" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Medium" Grid.Row="1"></Label>
+                            <Switch Grid.Column="1" Grid.Row="1" IsToggled="{Binding show_distance}" x:Name="distanceSwitch" ThumbColor="#98000b"></Switch>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

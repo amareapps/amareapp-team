@@ -76,7 +76,7 @@ namespace Chatter
             }
             catch(Exception e)
             {
-                await DisplayAlert("Error!",e.ToString(),"Oky");
+                await DisplayAlert("Oops!",e.ToString(),"Okay");
             }
         }
         private async Task loadData()
@@ -138,7 +138,7 @@ namespace Chatter
                     var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=updateVisible", content);
                     request.EnsureSuccessStatusCode();
                     var response = await request.Content.ReadAsStringAsync();
-                    await DisplayAlert("MATCH FOUND","You both liked each other!","Okay");
+                    await DisplayAlert("MATCH FOUND", "You both liked each other! Hurry and send a message!", "Okay");
                     imageSources.Remove(currentItem);
                 }
                 else

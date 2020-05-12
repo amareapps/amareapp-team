@@ -39,7 +39,7 @@ namespace Chatter
                 }
                 else
                 {
-                    await DisplayAlert("Error", "You must turn on gps", "Okay");
+                    await DisplayAlert("Error", "Location not found. Please turn on your GPS.", "Okay");
                 }
             }
             else

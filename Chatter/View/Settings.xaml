@@ -2,25 +2,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
-             x:Class="Chatter.Settings" BackgroundColor="#ebebeb">
+             x:Class="Chatter.Settings" BackgroundColor="#fffcf3">
     <ContentPage.Content>
         <StackLayout>
-            <Grid HeightRequest="50" Margin="0,0,0,20">
-                <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
-                <Button BackgroundColor="Transparent" ImageSource="backButton.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" x:Name="backButton" Clicked="backButton_Clicked"/>
+            <Grid HeightRequest="50" Margin="0,0,0,10">
+                <BoxView BackgroundColor="#fffcf3" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
+                <Button BackgroundColor="Transparent" ImageSource="backbuttonred.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" x:Name="backButton" Clicked="backButton_Clicked"/>
                 <Label VerticalOptions="Center" FontSize="Large" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="Settings"/>
             </Grid>
-            <ScrollView Margin="20">
+            <ScrollView Margin="20,0,20,10">
                 <StackLayout Spacing="10">
                     <Label Text="Discovery Settings" FontSize="Large"></Label>
-                    <Grid HorizontalOptions="CenterAndExpand" BackgroundColor="White" Padding="20">
+                    <Grid HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="AUTO"></RowDefinition>
                             <RowDefinition Height="AUTO"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label Text="Location" Grid.Column="0" Grid.Row="0"></Label>
+                        <Label Text="Location" Grid.Column="0" Grid.Row="0" FontSize="Medium"></Label>
                         <Picker x:Name="locationPicker" Grid.Column="0" Grid.Row="1" Title="Select Location" SelectedIndexChanged="Picker_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -30,27 +30,26 @@
                             </Picker.ItemsSource>
                         </Picker>
                     </Grid>
-                    <StackLayout HorizontalOptions="CenterAndExpand" Padding="20" BackgroundColor="White">
+                    <StackLayout HorizontalOptions="CenterAndExpand" Padding="10" BackgroundColor="Transparent">
                         <Grid HorizontalOptions="CenterAndExpand">
-                            <Label Grid.Column="0" Text="Maximum distance" FontSize="Large" TextColor="Red"></Label>
+                            <Label Grid.Column="0" Text="Maximum Distance" FontSize="Medium" Grid.ColumnSpan="2"></Label>
                             <Label Grid.Column="1" HorizontalTextAlignment="End" FontSize="Body" Text="{Binding Source={x:Reference Name=slider}, Path=Value, StringFormat='{0:N0} Miles'}"></Label>
                         </Grid>
-                        <Slider x:Name="slider" Value="{Binding maximum_distance, Mode=TwoWay}" Maximum="100" Margin="20" MaximumTrackColor="Red" MinimumHeightRequest="10" MinimumTrackColor="Red" ThumbColor="Red"></Slider>
+                        <Slider x:Name="slider" Value="{Binding maximum_distance, Mode=TwoWay}" Maximum="100" MaximumTrackColor="#98000B" MinimumHeightRequest="10" MinimumTrackColor="#98000B" ThumbColor="#98000B" ThumbImageSource="heartthumb.png"></Slider>
                     </StackLayout>
-                    <StackLayout HorizontalOptions="CenterAndExpand" Padding="20" BackgroundColor="White">
+                    <StackLayout HorizontalOptions="CenterAndExpand" Padding="10" BackgroundColor="Transparent">
                         <Grid HorizontalOptions="CenterAndExpand">
-                            <Label Grid.Column="0" Text="Age range" FontSize="Large" TextColor="Red"></Label>
+                            <Label Grid.Column="0" Text="Age range" FontSize="Medium"></Label>
                             <Label Grid.Column="1" HorizontalTextAlignment="End" FontSize="Body" Text="{Binding Source={x:Reference Name=ageslider}, Path=Value, StringFormat='18 - {0:N0}'}" ></Label>
                         </Grid>
-                        <Slider x:Name="ageslider" Value="{Binding age_range, Mode=TwoWay}" Maximum="60" Minimum="18" Margin="20" MaximumTrackColor="Red" MinimumHeightRequest="10" MinimumTrackColor="Red" ThumbColor="Red"></Slider>
+                        <Slider x:Name="ageslider" Value="{Binding age_range, Mode=TwoWay}" Maximum="60" Minimum="18" MaximumTrackColor="#98000B" MinimumHeightRequest="10" MinimumTrackColor="#98000B" ThumbColor="#98000b" ThumbImageSource="heartthumb.png"></Slider>
                     </StackLayout>
-                    <Button x:Name="saveButton" Text="Save and Apply" BackgroundColor="White" Clicked="saveButton_Clicked"></Button>
+                    <Button x:Name="saveButton" Text="Save and Apply" Margin="0,0,0,10" CornerRadius="30" BackgroundColor="#e3e1de" Clicked="saveButton_Clicked"></Button>
                     <Label Text="Contact Us" FontSize="Large"></Label>
-                    <Button Text="Help and Support" BackgroundColor="White"></Button>
-                    <Button Text="LOGOUT" BackgroundColor="White" Margin="0,20,0,0" x:Name="logoutButton" Clicked="logoutButton_Clicked"></Button>
+                    <Button Text="Help and Support" CornerRadius="30" BackgroundColor="#e3e1de"></Button>
                 </StackLayout>
-
             </ScrollView>
+            <Button Margin="20,0,20,10" Text="LOGOUT" TextColor="#fffcf3" BackgroundColor="#98000b" CornerRadius="30" x:Name="logoutButton" VerticalOptions="EndAndExpand" Clicked="logoutButton_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -12,7 +12,7 @@
             <Button Text="Take a Photo" x:Name="takePhotoButton" Clicked="takePhotoButton_Clicked"></Button>
             <Button Text="Choose from Gallery"  x:Name="choosePhotoButton" Clicked="choosePhotoButton_Clicked"></Button>
             <Button Text="DONE" x:Name="doneButton" Clicked="doneButton_Clicked"></Button>
-            <ActivityIndicator x:Name="loadingActivity" IsRunning="false" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <ActivityIndicator x:Name="loadingActivity" IsRunning="false" HorizontalOptions="Center" VerticalOptions="Center" Color="#98000b"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
