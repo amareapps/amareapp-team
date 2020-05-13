@@ -78,7 +78,9 @@ C:\Users\Kent\source\repos\Chatter\Chatter\bin\Debug\netstandard2.0\Mono.Android
 C:\Users\Kent\source\repos\Chatter\Chatter\bin\Debug\netstandard2.0\Mono.Android.xml
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Cells\IncomingViewCell.xaml.g.cs
+C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Cells\IncomingViewCellImage.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Cells\OutgoingViewCell.xaml.g.cs
+C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Cells\OutgoingViewCellImage.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\Discover.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\EditProfile.xaml.g.cs
 C:\Users\Kent\source\repos\Chatter\Chatter\obj\Debug\netstandard2.0\View\ImageSelection.xaml.g.cs

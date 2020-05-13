@@ -18,10 +18,10 @@ using System.Timers;
 using System.Net.WebSockets;
 using Chatter.Classes;
 using Google.Protobuf.WellKnownTypes;
-using Chatter.Classes;
 using Android.OS;
 using System.Threading;
 using Android.Media;
+using Plugin.Media.Abstractions;
 
 namespace Chatter
 {
@@ -31,9 +31,11 @@ namespace Chatter
         ObservableCollection<ChatModel> chatModels = new ObservableCollection<ChatModel>();
         private string Session_Id = "", Receiver_Id = "",Username = "",Image_Source="";
         ApiConnector api = new ApiConnector();
+        ImageOption imageOpt = new ImageOption();
         Base64toImageConverter converters = new Base64toImageConverter();
         string userLoggedIn = Application.Current.Properties["Id"].ToString().Replace("\"", "");
         ClientWebSocket wsClient = new ClientWebSocket();
+        FireStorage fireStorage = new FireStorage();
         //System.Timers.Timer timer;
         public Messaging(string receiver_id,string session_id,string username,string imagesource)
         {
@@ -143,7 +145,7 @@ namespace Chatter
 
         private async void sendButton_Clicked(object sender, EventArgs e)
         {
-            await sendMessage();
+            await sendMessage(messageEntry.Text);
         }
 
         private void ChatList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -159,12 +161,34 @@ namespace Chatter
             chatModels[oldIndex] = model;
             //chatModels[e.SelectedItemIndex].isVisible = "true";
         }
-        private void sendimageButton_Clicked(object sender, EventArgs e)
-        {
 
+        private async void imagePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = sender as Picker;
+            string userId = Application.Current.Properties["Id"].ToString().Replace("\"", "");
+            if (picker.SelectedIndex == -1)
+                return;
+            ImageOption imageOption = new ImageOption();
+            MediaFile imagePath = null;
+            if (picker.SelectedIndex == 0)
+            {
+                imagePath = await imageOpt.TakePhoto();
+            }
+            else if (picker.SelectedIndex == 1)
+            {
+                imagePath = await imageOpt.UploadPhoto();
+            }
+            string imageLink = await fireStorage.StoreImages(imagePath.GetStream(), userId);
+
+            await sendMessage(imageLink);
         }
 
-        private async Task sendMessage()
+        private async void sendimageButton_Clicked(object sender, EventArgs e)
+        {
+            imagePicker.Focus();
+        }
+
+        private async Task sendMessage(string message)
         {
             ChatModel modeler = new ChatModel {
                 id = "1",
@@ -172,7 +196,7 @@ namespace Chatter
                 sender_username = Application.Current.Properties["username"].ToString(),
                 session_id = Session_Id,
                 receiver_id = Receiver_Id,
-                message = messageEntry.Text,
+                message = message,
                 datetime = DateTime.Now.ToString()
             };
             string val = JsonConvert.SerializeObject(modeler);

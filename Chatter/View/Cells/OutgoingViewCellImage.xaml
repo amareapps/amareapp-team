@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Chatter.View.Cells.OutgoingViewCellImage">
+    <FlexLayout FlowDirection="LeftToRight" 
+                Rotation="180" 
+                Direction="Column"
+                AlignItems="End"
+                JustifyContent="SpaceEvenly" Margin="0,0,60,0" Padding="10">
+        <Frame BackgroundColor="DodgerBlue" CornerRadius="20" HasShadow="True" IsClippedToBounds="True" Padding="0" Margin="0">
+            <ImageButton Source="{Binding message}" Aspect="AspectFill"></ImageButton>
+        </Frame>
+        <Label Text="{Binding datetime}" IsVisible="{Binding isVisible}" FontSize="Micro" HorizontalOptions="End"></Label>
+    </FlexLayout>
+</ViewCell>

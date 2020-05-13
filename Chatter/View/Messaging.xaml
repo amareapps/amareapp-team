@@ -33,6 +33,14 @@
                  VerticalOptions="FillAndExpand" 
                  SeparatorColor="Transparent" CachingStrategy="RecycleElement">
             </ListView>
+            <Picker x:Name="imagePicker" IsVisible="False"  SelectedIndexChanged="imagePicker_SelectedIndexChanged" Title="Select Image">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Take Photo</x:String>
+                        <x:String>Choose from Gallery</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
             <Frame BorderColor="DarkRed" IsClippedToBounds="True" CornerRadius="10" HasShadow="True" Margin="0" Padding="0">
                 <Grid Margin="10,0,10,0">
                     <Grid.ColumnDefinitions>
@@ -42,6 +50,7 @@
                     </Grid.ColumnDefinitions>
                     <ImageButton Source="camera.png" BackgroundColor="Blue" CornerRadius="20" Padding="5" Margin="3" Aspect="AspectFill" HeightRequest="40" WidthRequest="40" x:Name="sendimageButton"  Clicked="sendimageButton_Clicked" Grid.Column="0"></ImageButton>
                     <Entry x:Name="messageEntry"  Placeholder="Enter Message" Grid.Column="1"></Entry>
+                    <Label Text="{Binding }"></Label>
                     <ImageButton Source="send.png" Aspect="Fill" HeightRequest="40" WidthRequest="40" x:Name="sendButton"  Clicked="sendButton_Clicked" Grid.Column="2"></ImageButton>
                 </Grid>
             </Frame>
