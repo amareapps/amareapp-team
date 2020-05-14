@@ -43,6 +43,9 @@ namespace Chatter
             ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("98000b");
             ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("fffcf8");
             BindingContext = new UserModelStorage();
+
+            birthdatePicker.SetValue(DatePicker.MaximumDateProperty, DateTime.Now.AddYears(-18));
+            birthdatePicker.SetValue(DatePicker.MinimumDateProperty, DateTime.Now.AddYears(-60));
         }
         private void clearFields()
         {
@@ -232,6 +235,10 @@ namespace Chatter
             {
                 await UploadPhoto();
             }
+        }
+        public void ShowPass_Tapped(object sender, EventArgs args)
+        {
+            passwordEntry.IsPassword = passwordEntry.IsPassword ? false : true;
         }
     }
 }

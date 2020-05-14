@@ -24,7 +24,7 @@
                         AlignItems="Start"
                         JustifyContent="SpaceEvenly" Margin="0" Padding="0">    
                 <Frame Padding="0" Margin="0" BackgroundColor="Transparent" CornerRadius="20" IsClippedToBounds="True"  Grid.Column="1">
-                    <Label BackgroundColor="#d9d9d9" Text="{Binding message}" Padding="10" VerticalTextAlignment="Start" />
+                    <Label BackgroundColor="#c4c2c2" Text="{Binding message}" Padding="10" VerticalTextAlignment="Start" TextColor="Black" />
                 </Frame>
                 <Label Text="{Binding datetime}" IsVisible="{Binding isVisible}" Grid.Column="1" Grid.Row="1" FontSize="Micro" HorizontalTextAlignment="Start"></Label>
             </FlexLayout>

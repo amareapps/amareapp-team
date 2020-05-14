@@ -45,7 +45,7 @@ namespace Chatter
             Image_Source = imagesource;
             InitializeComponent();
             NavigationPage.SetHasBackButton(this,false);
-            userImage.Source = Image_Source;
+            //userImage.Source = Image_Source;
         }
 
         async Task ConnectToServerAsync()

@@ -1,3 +1,6 @@
+Chatter.Classes.RoundedEntryRendererAndroid, Chatter.Android;crc6434110b545d9a8809.RoundedEntryRendererAndroid
+Chatter.Classes.RoundedEntryRendererAndroid;crc6434110b545d9a8809.RoundedEntryRendererAndroid
+chatter.classes.RoundedEntryRendererAndroid;crc6434110b545d9a8809.RoundedEntryRendererAndroid
 Chatter.Droid.MainActivity, Chatter.Android;crc64dc11d9472ec09b81.MainActivity
 Chatter.Droid.MainActivity;crc64dc11d9472ec09b81.MainActivity
 chatter.droid.MainActivity;crc64dc11d9472ec09b81.MainActivity

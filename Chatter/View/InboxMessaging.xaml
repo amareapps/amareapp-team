@@ -6,35 +6,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="http://xamarin.com/schemas/2014/forms"    
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"  
-             x:Class="Chatter.InboxMessaging" BackgroundColor="#f0f0f0">
+             x:Class="Chatter.InboxMessaging" BackgroundColor="#fffcf3">
     <Page.Resources>
         <local:Base64toImageConverter x:Key="base64toImageSource"></local:Base64toImageConverter>
     </Page.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <Grid RowSpacing="10" Margin="0,30,0,0" AbsoluteLayout.LayoutFlags="All"
+            <Grid RowSpacing="10" Margin="0,10,0,0" AbsoluteLayout.LayoutFlags="All"
               AbsoluteLayout.LayoutBounds="0,1,1,1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="AUTO"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <SearchBar Placeholder="Search matches" Grid.Row="0" Margin="10,0,10,0"></SearchBar>
+                <SearchBar Placeholder="Search matches" Grid.Row="0" Margin="0,0,0,10" HorizontalOptions="Start" VerticalOptions="Center"></SearchBar>
                 <StackLayout Grid.Row="1">
                     <Label Text="Recent matches" FontSize="Medium" Margin="10,0,0,0" FontAttributes="Bold"></Label>
                     <ScrollView Orientation="Horizontal">
-                    <StackLayout x:Name="recentMatchesList" Orientation="Horizontal" HeightRequest="150">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout WidthRequest="80" HeightRequest="150" Margin="10">
-                                    <Frame CornerRadius="45" 
+                        <StackLayout x:Name="recentMatchesList" Orientation="Horizontal" HeightRequest="150">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout WidthRequest="80" HeightRequest="150" Margin="10">
+                                        <Frame CornerRadius="45" 
                                        HeightRequest="70"
                                        WidthRequest="70"
                                        HorizontalOptions="Center"
                                        Padding="5"
-                                       BorderColor="Red"
+                                       BorderColor="#98000b"
                                        IsClippedToBounds="True">
-                                        <Frame CornerRadius="45" 
+                                            <Frame CornerRadius="45" 
                                        HeightRequest="70"
                                        WidthRequest="70"
                                        HorizontalOptions="Center"
@@ -43,13 +43,13 @@
                                        IsClippedToBounds="True">
                                                 <ffimageloading:CachedImage Aspect="AspectFit"
                                                    Source="{Binding image}"/>
+                                            </Frame>
                                         </Frame>
-                                    </Frame>
-                                    <Label Text="{Binding username}" HorizontalOptions="Center" FontSize="Micro" FontAttributes="Bold"></Label>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
+                                        <Label Text="{Binding username}" HorizontalOptions="Center" FontSize="Micro" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
                     </ScrollView>
                 </StackLayout>
                 <StackLayout Grid.Row="2">
@@ -69,10 +69,11 @@
                                            HorizontalOptions="Center"
                                            Padding="0"
                                            BorderColor="Black"
-                                           IsClippedToBounds="True">
+                                           IsClippedToBounds="True"
+                                           HasShadow="True">
                                             <ffimageloading:CachedImage Source="{Binding image}" Aspect="AspectFill" ></ffimageloading:CachedImage>
                                         </Frame>
-                                        <Label Margin="10,0,5,0" FontSize="Large" FontAttributes="Bold" Text="{Binding username}" Grid.Column="1" Grid.Row="0"/>
+                                        <Label Margin="10,0,5,0" FontSize="Medium" FontAttributes="Bold" Text="{Binding username}" Grid.Column="1" Grid.Row="0"/>
                                         <Label Margin="15,0,10,0" FontSize="Small" MaxLines="30" Text="{Binding message}" Grid.Column="1" Grid.Row="1"/>
                                     </Grid>
                                 </ViewCell>

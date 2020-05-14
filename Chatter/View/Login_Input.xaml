@@ -1,20 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                   xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:gradient="clr-namespace:Chatter.Classes"
-             mc:Ignorable="d"
-             x:Class="Chatter.Login_Input">
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:gradient="clr-namespace:Chatter.Classes" 
+                  xmlns:local="clr-namespace:Chatter"
+                  mc:Ignorable="d"
+                  x:Class="Chatter.Login_Input" >
     <AbsoluteLayout HorizontalOptions="Center" VerticalOptions="Center">
         <StackLayout AbsoluteLayout.LayoutFlags="All"
               AbsoluteLayout.LayoutBounds="0,1,1,1" Margin="20,0,20,0" Padding="30,30,30,30" Spacing="24" BackgroundColor="#fffcf8" HorizontalOptions="Center" VerticalOptions="Center" Opacity="3">
             <Image Source="Amare_logo.png" Aspect="AspectFit" HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" VerticalOptions="Center" />
             <Label Text="Welcome to Amare!" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
             <StackLayout>
-                <Entry WidthRequest="450" x:Name="emailEntry" Placeholder="Enter your e-mail address here..." FontSize="Small"></Entry>
-                <Entry WidthRequest="450" x:Name="passEntry" Placeholder="Enter your password here..." FontSize="Small" IsPassword="True"></Entry>
+                <local:RoundedEntry WidthRequest="450" x:Name="emailEntry" Placeholder="Enter your e-mail address here..." FontSize="Small"></local:RoundedEntry>
+                <local:RoundedEntry WidthRequest="450" x:Name="passEntry" Placeholder="Enter your password here..." FontSize="Small" IsPassword="True"></local:RoundedEntry>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox IsChecked="False" CheckedChanged="CheckBox_CheckedChanged" HorizontalOptions="Start" VerticalOptions="Center"  Grid.Column="0" Grid.Row="0"></CheckBox>
+                    <Label Text="Show Password"  Grid.Column="1" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                </Grid>
             </StackLayout>
             <Frame IsClippedToBounds="True" Padding="0" Margin="0" CornerRadius="30">
                 <Button BackgroundColor="#98000b" TextColor="#fffcf3" CornerRadius="20" x:Name="loginButton" Clicked="loginButton_Clicked" Text="LOG IN" FontSize="Medium" FontAttributes="Bold"></Button>
