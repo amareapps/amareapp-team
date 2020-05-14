@@ -44,9 +44,19 @@ namespace Chatter
             ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("fffcf8");
             BindingContext = new UserModelStorage();
 
+            int year = DateTime.Now.Year;
+            DateTime firstDay = new DateTime(year, 1, 1);
+
             birthdatePicker.SetValue(DatePicker.MaximumDateProperty, DateTime.Now.AddYears(-18));
-            birthdatePicker.SetValue(DatePicker.MinimumDateProperty, DateTime.Now.AddYears(-60));
+            birthdatePicker.SetValue(DatePicker.MinimumDateProperty, firstDay.AddYears(-60));
         }
+        public static int GetMonthDifference(DateTime startDate, DateTime endDate)
+        {
+            int monthsApart = 12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month;
+            return Math.Abs(monthsApart);
+
+        }
+
         private void clearFields()
         {
             userNameEntry.Text = string.Empty;
