@@ -18,7 +18,7 @@ using FFImageLoading.Forms.Platform;
 
 namespace Chatter.Droid
 {
-    [Activity(Label = "Chatter", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Amare", Icon = "@drawable/Amare_logo", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IValueEventListener
     {
         readonly string[] permissionGroup =

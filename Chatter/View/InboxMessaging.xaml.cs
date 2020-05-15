@@ -146,7 +146,7 @@ namespace Chatter
         private void InboxList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             modeler = e.Item as InboxModel;
-            Messaging chatForm = new Messaging(modeler.user_id,modeler.session_id,modeler.username,modeler.image);
+            Messaging chatForm = new Messaging(modeler.user_id,modeler.session_id,modeler.username,modeler.image,modeler.emoji);
             Navigation.PushModalAsync(chatForm);
         }
         private async Task loadRecentMatches()

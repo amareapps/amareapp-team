@@ -19,6 +19,7 @@ namespace Chatter
         public App()
         {
             InitializeComponent();
+
             if (hasLoggedIn())
             {
                 MainPage = new MainPage();
@@ -38,10 +39,11 @@ namespace Chatter
                 {
                     var value = await api.ReadMessage();
                     var model = JsonConvert.DeserializeObject<ChatModel>(value);
-                    if (model.receiver_id == Application.Current.Properties["Id"].ToString().Replace("\"", "") ||
-                        model.sender_id == Application.Current.Properties["Id"].ToString().Replace("\"", ""))
+
+
+                    if (model.receiver_id == Application.Current.Properties["Id"].ToString().Replace("\"", ""))
                     {
-                        DependencyService.Get<INotification>().CreateNotification("Amare", model.message);
+                        DependencyService.Get<INotification>().CreateNotification(model.sender_username, model.message);
                     }
                 }
             });

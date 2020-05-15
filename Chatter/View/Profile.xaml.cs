@@ -15,6 +15,7 @@ using Xamarin.Forms.Xaml;
 using System.Timers;
 using Chatter.Classes;
 using Plugin.Media.Abstractions;
+using Rg.Plugins.Popup.Services;
 
 namespace Chatter
 {
@@ -123,8 +124,8 @@ namespace Chatter
                     var table = conn.Table<UserModel>().ToList();
                     foreach (UserModel model in table)
                     {
-                        byte[] Base64Stream = Convert.FromBase64String(model.image);
-                        ProfileImage.Source = ImageSource.FromStream(() => new MemoryStream(Base64Stream));
+                        //byte[] Base64Stream = Convert.FromBase64String(model.image);
+                        ProfileImage.Source = model.image;
                         //nameLabel.Text = model.username;
                         Application.Current.Properties["Id"] = "\"" + model.id + "\"";
                         //DisplayAlert("Get", Application.Current.Properties["Id"].ToString(), "Okay");
@@ -156,7 +157,7 @@ namespace Chatter
             {
                 imagePath = await imageOption.UploadPhoto();
             }
-            string imageLink = await fireStorage.StoreImages(imagePath.GetStream(), userId);
+            string imageLink = await fireStorage.StoreImages(imagePath.GetStream(), userId + DateTime.Now.ToString("MM_dd_yyyy_hh_mm_ss_fff"));
             await api.updateProfilePicture(userId, imageLink);
             await api.syncUserData(userId);
             retrieveUserProp();
@@ -164,6 +165,10 @@ namespace Chatter
             imagePicker.SelectedIndex = -1;
             loadingIndicator.IsRunning = false;
             loadingIndicator.IsVisible = false;
+        }
+
+        private async void CameraButton_Clicked(object sender, EventArgs e)
+        {
         }
     }
 }

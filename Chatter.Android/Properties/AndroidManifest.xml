@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.chatter" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
-	<application android:label="Chatter.Android" android:theme="@android:style/Theme.Material.Light">
+	<application android:label="Amare" android:theme="@android:style/Theme.Material.Light">
 		<provider android:name="android.support.v4.content.FileProvider" 
 				android:authorities="com.companyname.chatter.fileprovider" 
 				android:exported="false" 

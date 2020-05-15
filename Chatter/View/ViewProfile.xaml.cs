@@ -38,10 +38,6 @@ namespace Chatter.View
                 var list = await api.otherUserImageList(userId);
                 BindingContext = user;
                 galleryModel.Add(list);
-                foreach (GalleryModel model in list)
-                {
-                    await DisplayAlert("Checking!",model.image,"Okay");
-                }
                 galleryView.ItemsSource = list;
             }
             catch (Exception ex)

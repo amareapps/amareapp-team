@@ -27,7 +27,7 @@ namespace Chatter
     public partial class ProfileMaintenance : CarouselPage
     {
         bool _isInsert = true;
-        string gender = "";
+        string gender = "",interestIn="";
         string locationString = "";
         string imageString;
         string number = "";
@@ -53,7 +53,8 @@ namespace Chatter
         private async void continueButton_Clicked(object sender, EventArgs e)
         {
             if (userNameEntry.Text == string.Empty || passwordEntry.Text == string.Empty || 
-                emailEntry.Text == string.Empty || gender == string.Empty || imageString == string.Empty)
+                emailEntry.Text == string.Empty || gender == string.Empty || imageString == string.Empty || interestIn == string.Empty 
+                || universityEntry.Text == string.Empty)
             {
                 await DisplayAlert("Oops!", "Incomplete credentials! Please fill the required fields.", "Okay");
                 return;
@@ -82,7 +83,7 @@ namespace Chatter
             await sampless();
             activityIndicator.IsRunning = false;
             //await Navigation.PushAsync(new ImageSelection());
-            await DisplayAlert("Image Selection", string.IsNullOrEmpty(number).ToString(), "Okay");
+            //await DisplayAlert("Image Selection", string.IsNullOrEmpty(number).ToString(), "Okay");
             if (string.IsNullOrEmpty(number))
             {
                 await Navigation.PopToRootAsync();
@@ -113,6 +114,9 @@ namespace Chatter
                 content.Add(new StringContent(imageString), "image");
                 content.Add(new StringContent(number), "phone_number");
                 content.Add(new StringContent(birthdatePicker.Date.ToString()), "birthdate");
+                content.Add(new StringContent(interestIn), "interest");
+                content.Add(new StringContent(universityEntry.Text), "school");
+
                 var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=insert", content);
                 request.EnsureSuccessStatusCode();
                 var response = await request.Content.ReadAsStringAsync();
@@ -138,8 +142,25 @@ namespace Chatter
         }
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            gender = btn.Text;
+            var looper = iamGrid.Children.Where(x => x is Button);
+            foreach (Button btn in looper)
+            {
+                btn.BackgroundColor = Color.FromHex("#fffcf8");
+            }
+            Button btne = (Button)sender;
+            btne.BackgroundColor = Color.FromHex("#adadad");
+            gender = btne.Text;
+        }
+        private void Button_Interest(object sender, EventArgs e)
+        {
+            var looper = gridInterest.Children.Where(x => x is Button);
+            foreach(Button btn in looper)
+            {
+                btn.BackgroundColor = Color.FromHex("#fffcf8");
+            }
+            Button btne = (Button)sender;
+            btne.BackgroundColor = Color.FromHex("#adadad");
+            interestIn = btne.Text;
         }
         private void nextContent(object sender, EventArgs e)
         {
@@ -157,10 +178,17 @@ namespace Chatter
             }
             else if (this.CurrentPage == birthdayContent)
             {
+                this.CurrentPage = schoolContent;
+            }
+            else if (this.CurrentPage == schoolContent)
+            {
                 this.CurrentPage = genderContent;
             }
             else if (this.CurrentPage == genderContent)
             {
+                this.CurrentPage = interestContent;
+            }
+            else if (this.CurrentPage == interestContent) {
                 this.CurrentPage = pictureContent;
             }
         }
@@ -220,6 +248,16 @@ namespace Chatter
             // byte[] imageArray = System.IO.File.ReadAllBytes(file.Path);
             // Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
             chooseImageButton.Source = file.Path.ToString();
+        }
+
+        private void universityEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue == string.Empty)
+                btnUniversity.Text = "SKIP";
+            else
+            {
+                btnUniversity.Text = "CONTINUE";
+            }
         }
 
         private async void imagePicker_SelectedIndexChanged(object sender, EventArgs e)

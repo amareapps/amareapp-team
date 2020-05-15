@@ -45,7 +45,7 @@
                        Clicked="EditButton_Clicked"/>
                 <ActivityIndicator IsRunning="False"    HeightRequest="40" WidthRequest="40"
                          IsVisible="False"  x:Name="loadingIndicator" Color="#98000b" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"></ActivityIndicator>
-                <ImageButton Padding="5" BackgroundColor="#fffcf3" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" x:Name="CameraButton" Source="camera.png" Grid.Column="1" Grid.Row="1"/>
+                <ImageButton Padding="5" BackgroundColor="#fffcf3" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" x:Name="CameraButton" Source="camera.png" Grid.Column="1" Grid.Row="1" Clicked="CameraButton_Clicked"/>
                 <ImageButton Padding="5" BackgroundColor="#fffcf3" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" x:Name="UpdateProfileButton" Source="edit.png" Grid.Column="2" Grid.Row="0" Clicked="UpdateProfileButton_Clicked"/>
             </Grid>
             <StackLayout Grid.Row="3" BackgroundColor="#f5f5f5" Margin="0,60,0,0" Padding="0,0,0,20">

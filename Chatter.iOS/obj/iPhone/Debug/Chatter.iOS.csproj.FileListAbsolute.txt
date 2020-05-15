@@ -1,0 +1,8 @@
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\ibtool\_BundleResourceWithLogicalName.items
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\actool\_PartialAppManifest.items
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\actool\_BundleResourceWithLogicalName.items
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\coremlc\_PartialAppManifest.items
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\coremlc\_BundleResourceWithLogicalName.items
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\optimized\
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\Chatter.iOS.csprojAssemblyReference.cache
+C:\Users\Kent\source\repos\Chatter\Chatter.iOS\obj\iPhone\Debug\Chatter.iOS.csproj.CoreCompileInputs.cache

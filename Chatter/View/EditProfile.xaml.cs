@@ -148,7 +148,7 @@ namespace Chatter.View
                         {
                             sample.Source = imagePath.Path.ToString();
                             sample.Aspect = Aspect.AspectFill;
-                            var sample2 = await fireStorage.StoreImages(imagePath.GetStream(), (Application.Current.Properties["Id"].ToString().Replace("\"", "") + "_" + counter.ToString()));
+                            var sample2 = await fireStorage.StoreImages(imagePath.GetStream(), (Application.Current.Properties["Id"].ToString().Replace("\"", "") + "_" + counter.ToString()) + DateTime.Now.ToString("MM_dd_yyyy_hh_mm_ss_fff"));
                             imageUrl = sample2;
                             await saveToGallery();
                             savetoSqlite();

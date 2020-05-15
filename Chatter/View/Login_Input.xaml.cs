@@ -65,10 +65,10 @@ namespace Chatter
                     var looper = JsonConvert.DeserializeObject<List<UserModel>>(response, settings); 
                     foreach (UserModel model in looper)
                     {
-                        var webClient = new WebClient();
-                        byte[] imageBytes = webClient.DownloadData(model.image);
-                        string base64Image = Convert.ToBase64String(imageBytes);
-                        model.image = base64Image;
+                        //var webClient = new WebClient();
+                        //byte[] imageBytes = webClient.DownloadData(model.image);
+                        //string base64Image = Convert.ToBase64String(imageBytes);
+                        //model.image = base64Image;
                         userLogged = model;
                     }
                     Application.Current.Properties["Id"] = "\""+ userLogged.id + "\"";

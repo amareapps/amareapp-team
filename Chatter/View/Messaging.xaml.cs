@@ -22,6 +22,7 @@ using Android.OS;
 using System.Threading;
 using Android.Media;
 using Plugin.Media.Abstractions;
+using Java.Sql;
 
 namespace Chatter
 {
@@ -29,23 +30,25 @@ namespace Chatter
     public partial class Messaging : ContentPage
     {
         ObservableCollection<ChatModel> chatModels = new ObservableCollection<ChatModel>();
-        private string Session_Id = "", Receiver_Id = "",Username = "",Image_Source="";
-        ApiConnector api = new ApiConnector();
+        private string Session_Id = "", Receiver_Id = "",Username = "",Image_Source="",Emoji = "";
         ImageOption imageOpt = new ImageOption();
         Base64toImageConverter converters = new Base64toImageConverter();
         string userLoggedIn = Application.Current.Properties["Id"].ToString().Replace("\"", "");
         ClientWebSocket wsClient = new ClientWebSocket();
         FireStorage fireStorage = new FireStorage();
         //System.Timers.Timer timer;
-        public Messaging(string receiver_id,string session_id,string username,string imagesource)
+        public Messaging(string receiver_id,string session_id,string username,string imagesource,string emoji)
         {
             Session_Id = session_id;
             Receiver_Id = receiver_id;
             Username = username;
+            Emoji = emoji;
             Image_Source = imagesource;
             InitializeComponent();
             NavigationPage.SetHasBackButton(this,false);
             userImage.Source = Image_Source;
+
+            lblEmoji.Text = emoji;
         }
 
         async Task ConnectToServerAsync()
@@ -162,6 +165,29 @@ namespace Chatter
             //chatModels[e.SelectedItemIndex].isVisible = "true";
         }
 
+        private void messageEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue == string.Empty)
+            {
+                lblEmoji.IsVisible = true;
+                sendButton.IsVisible = false;
+            }
+            else
+            {
+                lblEmoji.IsVisible = false;
+                sendButton.IsVisible = true;
+            }
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await sendMessage(lblEmoji.Text);
+        }
+
+        private async void ChatList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            await DisplayAlert("Ito yun","sana","Okay");
+        }
         private async void imagePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             Picker picker = sender as Picker;
@@ -178,12 +204,11 @@ namespace Chatter
             {
                 imagePath = await imageOpt.UploadPhoto();
             }
-            string imageLink = await fireStorage.StoreImages(imagePath.GetStream(), userId);
-
+            string imageLink = await fireStorage.StoreImages(imagePath.GetStream(), Session_Id + userId + Receiver_Id + DateTime.Now.ToString("MM_dd_yyyy_hh_mm_ss_fff"));
             await sendMessage(imageLink);
         }
 
-        private async void sendimageButton_Clicked(object sender, EventArgs e)
+        private void sendimageButton_Clicked(object sender, EventArgs e)
         {
             imagePicker.Focus();
         }

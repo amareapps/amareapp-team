@@ -36,7 +36,7 @@ namespace Chatter
         ApiConnector api = new ApiConnector();
         bool isLiked = false;
         private int liked_Id = 0;
-        public string currentLocation = "";
+        public string currentLocation = "", UserProfilePicture = "";
         public string distanceFilter = "";
         bool hasSearchReference = true;
         public Discover()
@@ -70,6 +70,7 @@ namespace Chatter
                     foreach (UserModel iniModel in sample1)
                     {
                         currentLocation = iniModel.location;
+                        UserProfilePicture = iniModel.image;
                     }
                     await loadData();
                 }
@@ -138,7 +139,8 @@ namespace Chatter
                     var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=updateVisible", content);
                     request.EnsureSuccessStatusCode();
                     var response = await request.Content.ReadAsStringAsync();
-                    await DisplayAlert("MATCH FOUND", "You both liked each other! Hurry and send a message!", "Okay");
+                    await PopupNavigation.Instance.PushAsync(new AnimateMatched(UserProfilePicture,currentItem.image));
+                    //await DisplayAlert("MATCH FOUND", "You both liked each other! Hurry and send a message!", "Okay");
                     imageSources.Remove(currentItem);
                 }
                 else
@@ -151,7 +153,7 @@ namespace Chatter
                     var request = await client.PostAsync("http://" + ApiConnection.Url + "/apier/api/test_api.php?action=insert_liked", content);
                     request.EnsureSuccessStatusCode();
                     var response = await request.Content.ReadAsStringAsync();
-                    var exec = await DisplayAlert("Message", "User : " + Application.Current.Properties["Id"].ToString().Replace("\"", "") + " liked User: " + currentUserIdSelected, null, "OK");
+                    var exec = await DisplayAlert("Discover", "You liked " + currentItem.username, null, "OK");
                     imageSources.Remove(currentItem);
                 }
             }
@@ -184,7 +186,7 @@ namespace Chatter
                 }
                 else
                 {
-                    await DisplayAlert("Game", strurl + " hayss" + response, "Okay");
+                    //await DisplayAlert("Game", strurl + " hayss" + response, "Okay");
                     liked_Id = Convert.ToInt32(response.Replace("\"", ""));
                     isLiked = true;
                 }

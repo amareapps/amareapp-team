@@ -75,10 +75,10 @@ namespace Chatter.Classes
                 var looper = JsonConvert.DeserializeObject<List<UserModel>>(response).ToList();
                 foreach (UserModel modeler in looper)
                 {
-                    var webClient = new WebClient();
-                    byte[] imageBytes = webClient.DownloadData(modeler.image);
-                    string base64Image = Convert.ToBase64String(imageBytes);
-                    modeler.image = base64Image;
+                   // var webClient = new WebClient();
+                   // byte[] imageBytes = webClient.DownloadData(modeler.image);
+                   // string base64Image = Convert.ToBase64String(imageBytes);
+                   // modeler.image = base64Image;
                     user = modeler;
                 }
                 await saveToSqlite(user);
@@ -384,7 +384,7 @@ namespace Chatter.Classes
         }
         public async Task connectToServer()
         {
-            await wsClient.ConnectAsync(new Uri("ws://192.168.1.7:8088"), CancellationToken.None);
+            await wsClient.ConnectAsync(new Uri("ws://"+ApiConnection.Url+":8088"), CancellationToken.None);
         }
         public async Task<string> ReadMessage()
         {

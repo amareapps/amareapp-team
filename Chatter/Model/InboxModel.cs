@@ -17,5 +17,6 @@ namespace Chatter.Model
         public string message { get; set; }
         public string image { get; set; }
         public string datetime { get; set; }
+        public string emoji { get; set; }
     }
 }
