@@ -43,7 +43,20 @@ namespace Chatter
             ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("98000b");
             ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("fffcf8");
             BindingContext = new UserModelStorage();
+
+            int year = DateTime.Now.Year;
+            DateTime firstDay = new DateTime(year, 1, 1);
+
+            birthdatePicker.SetValue(DatePicker.MaximumDateProperty, DateTime.Now.AddYears(-18));
+            birthdatePicker.SetValue(DatePicker.MinimumDateProperty, firstDay.AddYears(-60));
         }
+        public static int GetMonthDifference(DateTime startDate, DateTime endDate)
+        {
+            int monthsApart = 12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month;
+            return Math.Abs(monthsApart);
+
+        }
+
         private void clearFields()
         {
             userNameEntry.Text = string.Empty;
@@ -270,6 +283,10 @@ namespace Chatter
             {
                 await UploadPhoto();
             }
+        }
+        public void ShowPass_Tapped(object sender, EventArgs args)
+        {
+            passwordEntry.IsPassword = passwordEntry.IsPassword ? false : true;
         }
     }
 }

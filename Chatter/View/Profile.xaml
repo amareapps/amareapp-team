@@ -48,12 +48,12 @@
                 <ImageButton Padding="5" BackgroundColor="#fffcf3" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" x:Name="CameraButton" Source="camera.png" Grid.Column="1" Grid.Row="1" Clicked="CameraButton_Clicked"/>
                 <ImageButton Padding="5" BackgroundColor="#fffcf3" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" x:Name="UpdateProfileButton" Source="edit.png" Grid.Column="2" Grid.Row="0" Clicked="UpdateProfileButton_Clicked"/>
             </Grid>
-            <StackLayout Grid.Row="3" BackgroundColor="#f5f5f5" Margin="0,60,0,0" Padding="0,0,0,20">
+            <StackLayout Grid.Row="3" BackgroundColor="#f2f2f2" Margin="0,90,0,0" Padding="0,0,0,0">
                 <cards:CarouselView x:Name="autoSlider">
                     <cards:CarouselView.ItemsSource>
                         <x:Array Type="{x:Type View}">
-                            <StackLayout Padding="30,5,30,5" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Image Source="FINAL_AMERA.png"/>
+                            <StackLayout Padding="40,5,40,5" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="FINAL_AMERA.png" Aspect="AspectFill" WidthRequest="400"/>
                             </StackLayout>
                             <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                                 <Label Text="Swipe around the world" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"></Label>
@@ -66,7 +66,7 @@
                         </x:Array>
                     </cards:CarouselView.ItemsSource>
                 </cards:CarouselView>
-                <Button HorizontalOptions="Center" VerticalOptions="End" FontSize="Medium" CornerRadius="30" Text="Share Amare" TextColor="#fffcf3" BackgroundColor="#98000b" ></Button>
+                <Button HorizontalOptions="Center" VerticalOptions="End" FontSize="Medium" CornerRadius="30" Text="Share Amare" TextColor="#fffcf3" BackgroundColor="#98000b"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

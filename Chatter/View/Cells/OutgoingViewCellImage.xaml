@@ -7,7 +7,7 @@
                 Direction="Column"
                 AlignItems="End"
                 JustifyContent="SpaceEvenly" Margin="0,0,60,0" Padding="10">
-        <Frame BackgroundColor="DodgerBlue" CornerRadius="20" HasShadow="True" IsClippedToBounds="True" Padding="0" Margin="0">
+        <Frame BackgroundColor="#e3646c" CornerRadius="20" HasShadow="True" IsClippedToBounds="True" Padding="0" Margin="0">
             <ImageButton Source="{Binding message}" Aspect="AspectFill"></ImageButton>
         </Frame>
         <Label Text="{Binding datetime}" IsVisible="{Binding isVisible}" FontSize="Micro" HorizontalOptions="End"></Label>

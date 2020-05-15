@@ -278,5 +278,9 @@ namespace Chatter
                 loginButton.IsEnabled = true;
             }
         }
+        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            passEntry.IsPassword = passEntry.IsPassword ? false : true;
+        }
     }
 }

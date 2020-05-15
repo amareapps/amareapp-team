@@ -22,7 +22,9 @@
             <FlexLayout Grid.RowSpan="2" Grid.Column="1" Direction="Column"
                         AlignItems="Start"
                         JustifyContent="SpaceEvenly" Margin="0" Padding="0">
-                <ImageButton Source="{Binding message}" Aspect="AspectFill"></ImageButton>
+                <Frame BackgroundColor="#e3646c" CornerRadius="20" HasShadow="True" IsClippedToBounds="True" Padding="0" Margin="0">
+                    <ImageButton Source="{Binding message}" Aspect="AspectFill"></ImageButton>
+                </Frame>
                 <Label Text="{Binding datetime}" IsVisible="{Binding isVisible}" Grid.Column="1" Grid.Row="1" FontSize="Micro" HorizontalTextAlignment="Start"></Label>
             </FlexLayout>
         </Grid>

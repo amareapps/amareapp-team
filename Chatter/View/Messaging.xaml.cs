@@ -47,8 +47,8 @@ namespace Chatter
             InitializeComponent();
             NavigationPage.SetHasBackButton(this,false);
             userImage.Source = Image_Source;
-
             lblEmoji.Text = emoji;
+            //userImage.Source = Image_Source;
         }
 
         async Task ConnectToServerAsync()
